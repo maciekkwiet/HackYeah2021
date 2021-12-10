@@ -89,8 +89,14 @@ module.exports = {
     'import/no-extraneous-dependencies': [2, { devDependencies: ['**/vite.config.ts'] }],
 
     'eslint-comments/disable-enable-pair': 0,
+    'no-alert': 0,
+    'no-console': 0,
     'import/prefer-default-export': 0,
     'import/no-default-export': 0,
     'react/function-component-definition': 0,
+    '@typescript-eslint/no-throw-literal': 0,
+    '@typescript-eslint/no-shadow': 0,
+    '@typescript-eslint/no-implicit-any': 0,
+    'react/button-has-type': 0,
   },
 };

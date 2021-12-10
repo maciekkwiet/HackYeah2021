@@ -16,8 +16,12 @@
     "lint": "eslint --cache \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
+    "@supabase/supabase-js": "1.28.5",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-router-dom": "6",
+    "use-supabase": "1.0.3",
+    "vite-tsconfig-paths": "3.3.17"
   },
   "devDependencies": {
     "@types/node": "16.11.12",

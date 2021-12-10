@@ -1,11 +1,15 @@
 import './App.css';
 
 import { useState } from 'react';
+import { useUser } from 'use-supabase';
 
 import logo from './logo.svg';
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const user = useUser();
+
+  console.log('🚀 ~ file: App.tsx ~ line 11 ~ App ~ user', user);
 
   return (
     <div className="App">
