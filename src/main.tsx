@@ -6,7 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import { Router } from './services/routes/Router';
 import { SupabaseProvider } from './services/supabase/SupabaseProvider';
-import { theme } from './theme';
+import { theme } from './services/theme';
 
 ReactDOM.render(
   <React.StrictMode>
