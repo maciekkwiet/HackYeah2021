@@ -54,10 +54,19 @@ export const Register = () => {
   const registerUser = async () => {
     const { email, password, phone, ...rest } = form;
 
-    const { user } = await signUp({ email, password, phone });
+    try {
+      const { error, user } = await signUp({ email, password, phone });
 
-    await addProfile({ id: user?.id, ...rest });
-    setStep(2);
+      if (error) throw error;
+
+      const { error: ex } = await addProfile({ id: user?.id, ...rest });
+
+      if (ex) throw ex;
+
+      setStep(2);
+    } catch (ex) {
+      alert(ex?.message ?? 'Nie znany błąd');
+    }
   };
 
   return (
@@ -81,7 +90,9 @@ export const Register = () => {
           buttons={<StepButtons prevStep={prevStep} nextStep={registerUser} />}
         />
       )}
-      {activeStep === 2 && <ThirdStep buttons={<StepButtons prevStep={prevStep} />} isPrivateAccount />}
+      {activeStep === 2 && (
+        <ThirdStep buttons={<StepButtons prevStep={prevStep} />} isPrivateAccount={form.accountType === 'PRIVATE'} />
+      )}
     </>
   );
 };
