@@ -1,5 +1,5 @@
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useUser } from 'use-supabase';
 
@@ -22,14 +22,29 @@ export const Register = () => {
         </Steps>
       </Box>
 
-      <Flex gridGap={10}>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
-          <ArrowBackIcon />
-        </Button>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => nextStep()}>
-          <ArrowForwardIcon />
-        </Button>
-      </Flex>
+      {activeStep === 0 ? (
+        <Flex gridGap={10} m={10} p={7}>
+          <Button width={200} colorScheme="blue" size="md" onClick={() => nextStep()} rightIcon={<ArrowForwardIcon />}>
+            <Text fontSize="sm">Kolejny krok</Text>
+          </Button>
+        </Flex>
+      ) : (
+        <Flex gridGap={10} m={10} p={7}>
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            width={200}
+            size="md"
+            onClick={() => prevStep()}
+            leftIcon={<ArrowBackIcon />}
+          >
+            <Text fontSize="sm">Poprzedni krok</Text>
+          </Button>
+          <Button width={200} colorScheme="blue" size="md" onClick={() => nextStep()} rightIcon={<ArrowForwardIcon />}>
+            <Text fontSize="sm">Kolejny krok</Text>
+          </Button>
+        </Flex>
+      )}
     </>
   );
 };
