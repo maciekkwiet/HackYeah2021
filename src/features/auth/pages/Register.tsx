@@ -24,6 +24,8 @@ export const Register = () => {
     initialStep: 0,
   });
 
+  const [radioValue, setRadioValue] = useState('1');
+
   return (
     <>
       <Container maxW="xl" centerContent mb={10} mt={10}>
@@ -35,7 +37,7 @@ export const Register = () => {
         </Box>
         <Text fontSize="md">Załóż konto na platformie Pet Share</Text>
       </Container>
-      <Box border="1px" borderColor="gray.500" m={10} p={7}>
+      <Box border="1px" borderColor="gray.500" borderRadius="md" m={10} p={7}>
         {/* Powinno być indigo.600 w colorScheme ale nie działa, pewnie coś easy ale nie korzystałem wcześniej z chakry xD */}
         <Steps activeStep={activeStep} colorScheme="blue">
           {steps.map((option) => (
@@ -44,7 +46,13 @@ export const Register = () => {
         </Steps>
       </Box>
 
-      {activeStep === 0 && <FirstStep buttons={<StepButtons nextStep={nextStep} />} />}
+      {activeStep === 0 && (
+        <FirstStep
+          buttons={<StepButtons nextStep={nextStep} />}
+          radioValue={radioValue}
+          setRadioValue={setRadioValue}
+        />
+      )}
       {activeStep === 1 && <SecondStep buttons={<StepButtons prevStep={prevStep} nextStep={nextStep} />} />}
       {activeStep === 2 && <ThirdStep isPrivateAccount />}
     </>
