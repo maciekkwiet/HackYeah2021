@@ -5,7 +5,15 @@ import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 
-const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
+import { FirstStep } from '../components/FirstStep';
+import { SecondStep } from '../components/SecondStep';
+import { ThirdStep } from '../components/ThirdStep';
+
+const steps = [
+  { label: 'Typ konta', element: <FirstStep /> },
+  { label: 'Podstawowe informacje', element: <SecondStep /> },
+  { label: 'Potwierdzenie', element: <ThirdStep /> },
+];
 
 export const Register = () => {
   const [, signUp] = useSignUp();
@@ -14,6 +22,7 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
   });
@@ -28,6 +37,8 @@ export const Register = () => {
           ))}
         </Steps>
       </Box>
+
+      {steps[activeStep]?.element}
 
       <Flex gridGap={10}>
         <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
