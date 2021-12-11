@@ -1,9 +1,10 @@
 import { ChangeEvent, useState } from 'react';
 import { useSignUp, useUpsert } from 'react-supabase';
-import { Box } from '@chakra-ui/react';
+import { Box, Container, Image, Text } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { Profile } from 'services/auth/typings/profile';
 
+import Logo from '../../../assets/logo.png';
 import { FirstStep } from '../components/FirstStep';
 import { SecondStep } from '../components/SecondStep';
 import { StepButtons } from '../components/StepButtons';
@@ -63,6 +64,15 @@ export const Register = () => {
 
   return (
     <>
+      <Container maxW="xl" centerContent mb={10} mt={10}>
+        <Image boxSize="100px" src={Logo} alt="Logo" />
+      </Container>
+      <Container maxW="sm" centerContent mb={10}>
+        <Box textStyle="h1" mb={4}>
+          Rejestracja
+        </Box>
+        <Text fontSize="md">Załóż konto na platformie Pet Share</Text>
+      </Container>
       <Box border="1px" borderColor="gray.500" m={10} p={7}>
         {/* Powinno być indigo.600 w colorScheme ale nie działa, pewnie coś easy ale nie korzystałem wcześniej z chakry xD */}
         <Steps activeStep={activeStep} colorScheme="blue">
