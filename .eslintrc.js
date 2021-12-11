@@ -100,5 +100,7 @@ module.exports = {
     '@typescript-eslint/triple-slash-reference': 0,
     'react/button-has-type': 0,
     'react/jsx-props-no-spreading': 0,
+    'import/no-cycle': 0,
+    'no-param-reassign': 0,
   },
 };
