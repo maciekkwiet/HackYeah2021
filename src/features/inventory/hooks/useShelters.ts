@@ -6,3 +6,9 @@ export const useShelters = () => {
 
   return useRealtime<Profile & { userId: string }>('profiles', { select: { filter } });
 };
+
+export const useProfile = (id: string) => {
+  const filter = useFilter((query) => query.eq('userId', id));
+
+  return useRealtime<Profile & { userId: string }>('profiles', { select: { filter } });
+};

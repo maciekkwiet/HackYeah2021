@@ -19,11 +19,9 @@ import { ShelterCard } from '../components/ShelterCard';
 import { useShelters } from '../hooks/useShelters';
 
 export const FindNeeds = ({ isPrivateAccount }: { isPrivateAccount: boolean }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [{ data }] = useShelters();
 
   const shelters = data ?? [];
-  const handleSubmit = () => {};
 
   return (
     <>
@@ -48,30 +46,11 @@ export const FindNeeds = ({ isPrivateAccount }: { isPrivateAccount: boolean }) =
               logo={shelter.avatar}
               name={shelter.name}
               address={shelter.city}
-              action={onOpen}
               offersPickupOfThings
             />
           ))}
         </Box>
       </Box>
-      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Zaproponuj pomoc</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <OurTable columns={['Artykuł', 'Cena za szt.', 'Data Ważności', 'Ilość']} rows={[]} />
-          </ModalBody>
-          <ModalFooter>
-            <Button variant="ghost" mr={3} onClick={onClose}>
-              Anuluj
-            </Button>
-            <Button onClick={handleSubmit} colorScheme="brand">
-              Zaproponuj pomoc
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </>
   );
 };
