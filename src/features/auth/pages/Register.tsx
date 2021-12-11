@@ -21,18 +21,18 @@ export type FormData = {
 } & Profile;
 
 const initial: FormData = {
-  accountType: 'PRIVATE',
-  name: 'Krzysztof Jarzyna',
+  accountType: 'SHELTER',
+  name: '',
   street: '',
   postCode: '',
-  city: 'Szczecin',
+  city: '',
   region: '',
   avatar: '',
   krs: '',
   // Auth Data:
-  email: 'test4@hacka.com',
-  password: 'test2@hacka.com',
-  repeatPassword: 'test2@hacka.com',
+  email: '',
+  password: '',
+  repeatPassword: '',
   phone: '',
 };
 
@@ -49,10 +49,10 @@ export const Register = () => {
   };
 
   const registerUser = async () => {
-    const { email, password, repeatPassword, phone, ...rest } = form;
+    const { email, password, repeatPassword, ...rest } = form;
 
     try {
-      const { error, user } = await signUp({ email, password, phone });
+      const { error, user } = await signUp({ email, password });
 
       if (error) throw error;
 

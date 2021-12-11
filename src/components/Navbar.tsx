@@ -1,6 +1,7 @@
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { Avatar, Box, Heading, HStack, Image } from '@chakra-ui/react';
 import logo from 'assets/logo.svg';
+import { LogoutButton } from 'features/auth/components/LogoutButton';
 import { useCurrentUser, useIsPrivateUser } from 'services/auth/hooks/useCurrentUser';
 import { Paths } from 'services/routes/Paths';
 
@@ -55,6 +56,7 @@ export const Navbar = () => {
         ))}
       </HStack>
       <Avatar margin="1rem" src={profile.avatar} />
+      {/* <LogoutButton /> */}
     </Box>
   );
 };

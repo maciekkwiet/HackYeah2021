@@ -31,7 +31,7 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
           <Input
             placeholder={isPrivateAccount ? 'Imię i nazwisko' : 'Nazwa schroniska'}
             name="name"
-            handleChange={handleChange}
+            onChange={handleChange}
             value={name}
           />
         }
@@ -47,7 +47,7 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
         input={<Input placeholder="Email" name="email" onChange={handleChange} value={email} />}
       />
       <FormInput
-        text="Phone"
+        text="Numer telefonu"
         input={<Input placeholder="Phone" name="phone" onChange={handleChange} value={phone} />}
       />
       <FileUpload
@@ -55,18 +55,21 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
         onChange={handleChange}
         name="avatar"
       />
-      {/* <FormInput
-        input={<Input placeholder="Zdjęcie profilowe" name="avatar" onChange={handleChange} value={avatar} />}
-      /> */}
       <FormHeader textMain="Dane logowania" textDescription="Hasło zabezpieczające Twoje konto na portalu." />
       <FormInput
-        text="Password"
-        input={<Input placeholder="Hasło" name="password" onChange={handleChange} value={password} />}
+        text="Hasło"
+        input={<Input type="password" placeholder="Hasło" name="password" onChange={handleChange} value={password} />}
       />
       <FormInput
-        text="Repeat Password"
+        text="Powtórz hasło"
         input={
-          <Input placeholder="Powtórz hasło" name="repeatPassword" onChange={handleChange} value={repeatPassword} />
+          <Input
+            type="password"
+            placeholder="Powtórz hasło"
+            name="repeatPassword"
+            onChange={handleChange}
+            value={repeatPassword}
+          />
         }
       />
 
@@ -88,7 +91,7 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
       />
       <FormInput
         text="Województwo"
-        input={<Input placeholder="Województwo" name="Woj" onChange={handleChange} value={region} />}
+        input={<Input placeholder="Województwo" name="region" onChange={handleChange} value={region} />}
       />
       {buttons}
     </Box>
