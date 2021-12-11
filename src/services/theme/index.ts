@@ -5,6 +5,13 @@ export const theme = extendTheme({
   components: {
     Steps,
   },
+  textStyles: {
+    h2: {
+      fontSize: ['10px', '20px'],
+      fontWeight: 'bold',
+      lineHeight: '28px',
+    },
+  },
   colors: {
     brand: {
       100: '#f7fafc',
@@ -14,6 +21,9 @@ export const theme = extendTheme({
     },
     gray: {
       500: '#6B7280',
+    },
+    green: {
+      100: '#D1FAE5',
     },
   },
 });
