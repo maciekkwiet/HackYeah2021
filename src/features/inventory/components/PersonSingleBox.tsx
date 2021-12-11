@@ -1,5 +1,7 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
+import { useProfile } from '../hooks/useShelters';
+
 export const PersonSingleBox = ({ avatar, name, address }: any) => {
   return (
     <Box
@@ -10,12 +12,23 @@ export const PersonSingleBox = ({ avatar, name, address }: any) => {
       border="1px"
       borderColor="gray.300"
       borderRadius="md"
+      padding="1rem"
     >
-      <Image src={avatar} boxSize={20} borderRadius="full" alt="" marginLeft="1rem" />
+      <Image src={avatar} boxSize={16} borderRadius="full" alt="" marginLeft="1rem" mr="1rem" />
       <Box>
         <Box textStyle="h2">{name}</Box>
         <Text color="grey.500">{address}</Text>
       </Box>
     </Box>
   );
+};
+
+export const PersonBox = ({ id }: { id: string }) => {
+  const [{ data }] = useProfile(id);
+
+  if (!data) return null;
+
+  const { avatar, name, city } = data[0];
+
+  return <PersonSingleBox avatar={avatar} name={name} address={city} />;
 };
