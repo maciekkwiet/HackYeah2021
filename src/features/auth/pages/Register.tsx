@@ -7,13 +7,10 @@ import { Step, Steps, useSteps } from 'chakra-ui-steps';
 
 import { FirstStep } from '../components/FirstStep';
 import { SecondStep } from '../components/SecondStep';
+import { StepButtons } from '../components/StepButtons';
 import { ThirdStep } from '../components/ThirdStep';
 
-const steps = [
-  { label: 'Typ konta', element: <FirstStep /> },
-  { label: 'Podstawowe informacje', element: <SecondStep /> },
-  { label: 'Potwierdzenie', element: <ThirdStep /> },
-];
+const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
 
 export const Register = () => {
   const [, signUp] = useSignUp();
@@ -27,6 +24,8 @@ export const Register = () => {
     initialStep: 0,
   });
 
+  console.log('🚀 ~ file: Register.tsx ~ line 24 ~ Register ~ activeStep', activeStep);
+
   return (
     <>
       <Box border="1px" borderColor="gray.500" m={10} p={7}>
@@ -38,16 +37,9 @@ export const Register = () => {
         </Steps>
       </Box>
 
-      {steps[activeStep]?.element}
-
-      <Flex gridGap={10}>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
-          <ArrowBackIcon />
-        </Button>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => nextStep()}>
-          <ArrowForwardIcon />
-        </Button>
-      </Flex>
+      {activeStep === 0 && <FirstStep buttons={<StepButtons nextStep={nextStep} />} />}
+      {activeStep === 1 && <SecondStep buttons={<StepButtons prevStep={prevStep} nextStep={nextStep} />} />}
+      {activeStep === 2 && <ThirdStep buttons={<StepButtons prevStep={prevStep} />} />}
     </>
   );
 };

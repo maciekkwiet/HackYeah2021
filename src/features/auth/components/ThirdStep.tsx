@@ -1,3 +1,6 @@
-export const ThirdStep = () => {
-  return <div>3</div>;
+import { ReactNode } from 'react';
+
+export type ThirdStepProps = { buttons: ReactNode };
+export const ThirdStep = ({ buttons }: ThirdStepProps) => {
+  return <div>3{buttons}</div>;
 };
