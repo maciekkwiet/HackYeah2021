@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout';
 import { Login } from 'features/auth/pages/Login';
 import { Register } from 'features/auth/pages/Register';
 import { DashboardPage } from 'features/dashboard/pages/DashboardPage';
@@ -12,8 +13,10 @@ export const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<RequireAuth />}>
-          <Route path={Paths.Inventory} element={<MyInventory />} />
-          <Route path={Paths.Dashboard} element={<DashboardPage />} />
+          <Route element={<Layout />}>
+            <Route path={Paths.Inventory} element={<MyInventory />} />
+            <Route path={Paths.Dashboard} element={<DashboardPage />} />
+          </Route>
         </Route>
         <Route path={Paths.Login} element={<Login />} />
         <Route path={Paths.Register} element={<Register />} />

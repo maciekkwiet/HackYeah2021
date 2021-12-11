@@ -94,6 +94,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-default-export': 0,
     'react/function-component-definition': 0,
+    'react/no-children-prop': 0,
     '@typescript-eslint/no-throw-literal': 0,
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-implicit-any': 0,
