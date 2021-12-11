@@ -39,7 +39,9 @@ export const Register = () => {
 
       {activeStep === 0 && <FirstStep buttons={<StepButtons nextStep={nextStep} />} />}
       {activeStep === 1 && <SecondStep buttons={<StepButtons prevStep={prevStep} nextStep={nextStep} />} />}
-      {activeStep === 2 && <ThirdStep buttons={<StepButtons prevStep={prevStep} nextStep={nextStep} />} />}
+      {activeStep === 2 && (
+        <ThirdStep buttons={<StepButtons prevStep={prevStep} nextStep={nextStep} />} isPrivateAccount />
+      )}
     </>
   );
 };
