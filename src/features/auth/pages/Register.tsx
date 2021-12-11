@@ -15,7 +15,9 @@ const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { lab
 export type FormData = {
   email: string;
   password: string;
+  repeatPassword: string;
   phone: string;
+  krs: string;
 } & Profile;
 
 const initial: FormData = {
@@ -26,9 +28,11 @@ const initial: FormData = {
   city: 'Szczecin',
   region: '',
   avatar: '',
+  krs: '',
   // Auth Data:
   email: 'test4@hacka.com',
   password: 'test2@hacka.com',
+  repeatPassword: 'test2@hacka.com',
   phone: '',
 };
 
@@ -45,7 +49,7 @@ export const Register = () => {
   };
 
   const registerUser = async () => {
-    const { email, password, phone, ...rest } = form;
+    const { email, password, repeatPassword, phone, ...rest } = form;
 
     try {
       const { error, user } = await signUp({ email, password, phone });
@@ -88,6 +92,7 @@ export const Register = () => {
           form={form}
           handleChange={handleChange}
           buttons={<StepButtons prevStep={prevStep} nextStep={registerUser} />}
+          isPrivateAccount={form.accountType === 'PRIVATE'}
         />
       )}
       {activeStep === 2 && <ThirdStep isPrivateAccount={form.accountType === 'PRIVATE'} />}
