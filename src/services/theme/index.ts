@@ -6,6 +6,11 @@ export const theme = extendTheme({
     Steps,
   },
   textStyles: {
+    h1: {
+      fontSize: ['20px', '42px'],
+      fontWeight: 'bold',
+      lineHeight: '28px',
+    },
     h2: {
       fontSize: ['10px', '20px'],
       fontWeight: 'bold',
