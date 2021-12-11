@@ -4,7 +4,7 @@ export const Header = ({ text, buttonText, onButtonClick }: any) => {
   return (
     <Box>
       <Heading>{text}</Heading>
-      <Button colorScheme="blue" variant="solid">
+      <Button colorScheme="brand" variant="solid">
         {buttonText}
       </Button>
     </Box>
