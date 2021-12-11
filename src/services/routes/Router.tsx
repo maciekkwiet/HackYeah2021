@@ -3,13 +3,18 @@ import App from 'App';
 import { Login } from 'features/auth/pages/Login';
 import { Register } from 'features/auth/pages/Register';
 
+import { Paths } from './Paths';
+import { RequireAuth } from './RequireAuth';
+
 export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route element={<RequireAuth />}>
+          <Route path={Paths.Dashboard} element={<App />} />
+        </Route>
+        <Route path={Paths.Login} element={<Login />} />
+        <Route path={Paths.Register} element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
