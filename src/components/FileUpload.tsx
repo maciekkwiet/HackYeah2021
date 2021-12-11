@@ -28,11 +28,7 @@ export const FileUpload = ({ name, placeholder = 'Twój plik...', acceptedFileTy
 
       const path = dataStorage.Key.replace('images/', '');
 
-      console.log('🚀 ~ file: FileUpload.tsx ~ line 32 ~ handleClick ~ path', path);
-
       const { data, error: ex } = await supaBase.storage.from('images').getPublicUrl(path);
-
-      console.log(data);
 
       if (ex || !data) throw ex;
 
