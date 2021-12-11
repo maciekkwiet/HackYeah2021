@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { FileUpload } from 'components/FileUpload';
 
+import { piecesCategory, weightCategory } from '../../../constants';
 import { Inventory } from '../typings/inventory';
 
 export type AddNewItemFormProps = { handleChange: (e: any) => void } & Inventory;
@@ -45,20 +46,30 @@ export const AddNewItemForm = ({
           <option value="KARMA">Karma</option>
           <option value="ZABAWKI">Zabawki</option>
           <option value="TRANSPORTERY">Transportery</option>
+          <option value="KOCE">Koce</option>
+          <option value="AKCESORIA">Akcesoria</option>
+          <option value="SRODKI_HIGIENY">Środki higieny</option>
+          <option value="SMAKOŁYKI">Smakołyki</option>
+          <option value="MISKI">Miski</option>
+          <option value="INNE">Inne</option>
         </Select>
       </FormControl>
       <FileUpload name="image" onChange={handleChange} label="Zdjęcie" />
-      <FormControl id="Liczba sztuk">
-        <FormLabel>Liczba sztuk</FormLabel>
-        <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
-      </FormControl>
-      <FormControl id="Waga jednej sztuk">
-        <FormLabel>Waga jednej sztuki</FormLabel>
-        <InputGroup>
-          <Input name="weight" type="number" value={weight} onChange={handleChange} />
-          <InputRightElement children={<Box color="gray.500">kg</Box>} />
-        </InputGroup>
-      </FormControl>
+      {piecesCategory.includes(category) && (
+        <FormControl id="Liczba sztuk">
+          <FormLabel>Liczba sztuk</FormLabel>
+          <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
+        </FormControl>
+      )}
+      {weightCategory.includes(category) && (
+        <FormControl id="Waga jednej sztuk">
+          <FormLabel>Waga jednej sztuki</FormLabel>
+          <InputGroup>
+            <Input name="weight" type="number" value={weight} onChange={handleChange} />
+            <InputRightElement children={<Box color="gray.500">kg</Box>} />
+          </InputGroup>
+        </FormControl>
+      )}
       <FormControl id="Cena jednej sztuk" mb="0.4rem">
         <FormLabel>Cena jednej sztuki</FormLabel>
         <InputGroup>
