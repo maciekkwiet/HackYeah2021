@@ -61,7 +61,6 @@ export const Register = () => {
       alert(ex?.message ?? 'Nie znany błąd');
     }
   };
-  const [radioValue, setRadioValue] = useState('1');
 
   return (
     <>
@@ -83,13 +82,7 @@ export const Register = () => {
         </Steps>
       </Box>
 
-      {activeStep === 0 && (
-        <FirstStep
-          radioValue={radioValue}
-          setRadioValue={setRadioValue}
-          buttons={<StepButtons nextStep={nextStep} />}
-        />
-      )}
+      {activeStep === 0 && <FirstStep handleChange={handleChange} buttons={<StepButtons nextStep={nextStep} />} />}
       {activeStep === 1 && (
         <SecondStep
           form={form}

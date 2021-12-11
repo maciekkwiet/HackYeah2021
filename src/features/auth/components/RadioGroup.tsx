@@ -1,18 +1,31 @@
+import { ChangeEvent, useState } from 'react';
 import { Box, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
+import { AccountType } from 'services/auth/typings/profile';
 
-export const RadioComponent = ({ setRadioValue, radioValue }: any) => {
+type Props = {
+  onChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+};
+
+export const RadioComponent = ({ onChange }: Props) => {
+  const [radioValue, setRadioValue] = useState<AccountType>('SHELTER');
+
+  const handleChange = (value: AccountType) => {
+    setRadioValue(value);
+    onChange({ target: { value, name: 'accountType' } } as any);
+  };
+
   return (
-    <RadioGroup onChange={setRadioValue} value={radioValue}>
+    <RadioGroup onChange={handleChange} value={radioValue}>
       <Stack direction="column">
-        <Radio value="1">
+        <Radio value="SHELTER">
           <Box textStyle="h3">Schronisko</Box>
           <Text fontSize="md">Chcę wykorzystać platformę do pozyskiwania wsparcia materialnego.</Text>
         </Radio>
-        <Radio value="2">
+        <Radio value="PRIVATE">
           <Box textStyle="h3">Konto prywatne</Box>
           <Text fontSize="md">Chcę wspierać schroniska materialnie jako pojedyncza osoba.</Text>
         </Radio>
-        <Radio value="3">
+        <Radio value="CORPORATE">
           <Box textStyle="h3">Konto firmow</Box>
           <Text fontSize="md">Chcę wspierać schroniska jako firma lub organizacja trzeciego sektora.</Text>
         </Radio>
