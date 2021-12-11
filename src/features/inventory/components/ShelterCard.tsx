@@ -19,6 +19,7 @@ import { OurTable } from 'features/auth/components/OurTable';
 import { useOverlap } from 'features/transactions/hooks/useOverlap';
 
 import { useProfile } from '../hooks/useShelters';
+import { PersonBox } from './PersonBox';
 
 export const ShelterCard = ({ id, phone, email, logo, name, address, offersPickupOfThings }: any) => {
   console.log('🚀 ~ file: ShelterCard.tsx ~ line 22 ~ ShelterCard ~ id', id);
@@ -68,12 +69,20 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
           </Button>
         </Flex>
       </Box>
-      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} size="xxl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Zaproponuj pomoc</ModalHeader>
+          <ModalHeader>Zaproponuj transakcję</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <PersonBox
+              shelterAvatar={logo}
+              shelterName="Schronisko"
+              shelterPlace="Wroc"
+              userAvatar={logo}
+              userName="Ada"
+              userCity="Poznan"
+            />
             <OurTable columns={['Artykuł', 'Cena za szt.', 'Data Ważności', 'Ilość']} rows={[]} />
           </ModalBody>
           <ModalFooter>
@@ -81,7 +90,7 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
               Anuluj
             </Button>
             <Button onClick={handleSubmit} colorScheme="brand">
-              Zaproponuj pomoc
+              Zaproponuj transakcję
             </Button>
           </ModalFooter>
         </ModalContent>
