@@ -52,7 +52,7 @@ export const Register = () => {
 
       if (error) throw error;
 
-      const { error: ex } = await addProfile({ id: user?.id, ...rest });
+      const { error: ex } = await addProfile({ userId: user?.id, ...rest });
 
       if (ex) throw ex;
 
