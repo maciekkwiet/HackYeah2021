@@ -1,4 +1,5 @@
 import { Box, FormControl, FormLabel, Input, InputGroup, InputRightElement, Select } from '@chakra-ui/react';
+import { allCategories } from 'consts';
 
 import { Need } from '../typings/need';
 
@@ -13,7 +14,9 @@ export const AddNewItemForm = ({ category, quantity, weight, handleChange }: Add
       <FormControl id="Kategoria">
         <FormLabel>Kategoria</FormLabel>
         <Select name="category" value={category} onChange={handleChange}>
-          <option value="KARMA">Karma</option>
+          {allCategories.map((c) => (
+            <option value={c}>{c[0] + c.slice(1).toLowerCase()}</option>
+          ))}
           <option value="ZABAWKI">Zabawki</option>
           <option value="TRANSPORTERY">Transportery</option>
         </Select>
