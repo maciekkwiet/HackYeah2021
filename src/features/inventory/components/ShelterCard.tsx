@@ -1,5 +1,5 @@
 import { BellIcon, CheckIcon } from '@chakra-ui/icons';
-import { Badge, Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import logoApp from 'assets/logo.svg';
 
 export const ShelterCard = ({ needs, phone, email, logo, name, address, action, offersPickupOfThings }: any) => {
@@ -36,7 +36,13 @@ export const ShelterCard = ({ needs, phone, email, logo, name, address, action, 
           ))}
         </Flex>
       </Box>
-      <Box border="1px" bg="gray.100" borderColor="gray.100" w="600px" borderRadius="md" h={8} />
+      <Box border="1px" bg="gray.100" borderColor="gray.100" w="600px" borderRadius="md" h={16}>
+        <Flex justify="right" mr={4} mt={3}>
+          <Button mr={3} colorScheme="blue">
+            Zaproponuj transakcję
+          </Button>
+        </Flex>
+      </Box>
     </>
   );
 };
