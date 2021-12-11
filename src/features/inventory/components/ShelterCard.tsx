@@ -1,9 +1,32 @@
 import { BellIcon, CheckIcon } from '@chakra-ui/icons';
-import { Badge, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Button,
+  Flex,
+  Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { OurTable } from 'features/auth/components/OurTable';
 import { useOverlap } from 'features/transactions/hooks/useOverlap';
 
-export const ShelterCard = ({ id, needs, phone, email, logo, name, address, action, offersPickupOfThings }: any) => {
+import { useProfile } from '../hooks/useShelters';
+
+export const ShelterCard = ({ id, phone, email, logo, name, address, offersPickupOfThings }: any) => {
+  console.log('🚀 ~ file: ShelterCard.tsx ~ line 22 ~ ShelterCard ~ id', id);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { theirs, overlap } = useOverlap(id);
+
+  const handleSubmit = () => {};
 
   return (
     <>
@@ -40,11 +63,29 @@ export const ShelterCard = ({ id, needs, phone, email, logo, name, address, acti
       </Box>
       <Box border="1px" bg="gray.100" borderColor="gray.100" w="600px" borderRadius="md" h={16}>
         <Flex justify="right" mr={4} mt={3}>
-          <Button mr={3} colorScheme="blue" onClick={action}>
+          <Button mr={3} colorScheme="blue" onClick={onOpen}>
             Zaproponuj transakcję
           </Button>
         </Flex>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Zaproponuj pomoc</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <OurTable columns={['Artykuł', 'Cena za szt.', 'Data Ważności', 'Ilość']} rows={[]} />
+          </ModalBody>
+          <ModalFooter>
+            <Button variant="ghost" mr={3} onClick={onClose}>
+              Anuluj
+            </Button>
+            <Button onClick={handleSubmit} colorScheme="brand">
+              Zaproponuj pomoc
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
