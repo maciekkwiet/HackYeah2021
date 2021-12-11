@@ -9,4 +9,5 @@ export type Profile = {
   region: string;
   avatar: string;
   phone: string;
+  userId?: string;
 };

@@ -15,19 +15,44 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import { OurTable } from 'features/auth/components/OurTable';
+import { useNewTransaction } from 'features/transactions/hooks/useNewTransaction';
 import { useOverlap } from 'features/transactions/hooks/useOverlap';
+import { useCurrentUser } from 'services/auth/hooks/useCurrentUser';
 
-import { useProfile } from '../hooks/useShelters';
+import { useMyInventory } from '../hooks/useInventory';
 import { PersonBox } from './PersonBox';
+import { TransactionTable } from './TransactionTable';
 
 export const ShelterCard = ({ id, phone, email, logo, name, address, offersPickupOfThings }: any) => {
-  console.log('🚀 ~ file: ShelterCard.tsx ~ line 22 ~ ShelterCard ~ id', id);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { addNewTransaction } = useNewTransaction();
+  const [{ data, fetching }] = useMyInventory();
   const { theirs, overlap } = useOverlap(id);
+  const { profile } = useCurrentUser();
 
-  const handleSubmit = () => {};
+  const quantityInput: number[] = [];
+
+  const handleSubmit = async () => {
+    console.log(overlap);
+    console.log(theirs);
+    console.log(data);
+    await addNewTransaction({
+      giver: profile.userId as string, // id usera
+      taker: id, // id schroniska
+      items: [...new Set(quantityInput)], // id itemow
+      status: 'SUBMITTED',
+    });
+    onClose();
+  };
+
+  const handleChange = (e: any, id: any) => {
+    // console.log(e);
+    // console.log(id);
+
+    const quantity = e?.nativeEvent?.data;
+
+    quantityInput.push(id);
+  };
 
   return (
     <>
@@ -77,13 +102,21 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
           <ModalBody>
             <PersonBox
               shelterAvatar={logo}
-              shelterName="Schronisko"
-              shelterPlace="Wroc"
-              userAvatar={logo}
-              userName="Ada"
-              userCity="Poznan"
+              shelterName={name}
+              shelterPlace={address}
+              userAvatar={profile?.avatar}
+              userName={profile?.name}
+              userCity={profile?.city}
             />
-            <OurTable columns={['Artykuł', 'Cena za szt.', 'Data Ważności', 'Ilość']} rows={[]} />
+            <Box h={10} />
+            <Box textStyle="h2">Twój inwentarz</Box>
+            <Text>Wybierz przedmioty, które chesz oddać/sprzedać w ramach transakcji.</Text>
+            <Box h={5} />
+            <TransactionTable
+              columns={['Przedmiot', 'Cena za szt.', 'Data Ważności', 'Ilość']}
+              data={data}
+              handleChange={handleChange}
+            />
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" mr={3} onClick={onClose}>
