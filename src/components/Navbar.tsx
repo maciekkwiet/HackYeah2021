@@ -1,4 +1,4 @@
-import { useMatch, useResolvedPath } from 'react-router-dom';
+import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { Avatar, Box, Heading, HStack, Image } from '@chakra-ui/react';
 import logo from 'assets/logo.svg';
 import { useCurrentUser, useIsPrivateUser } from 'services/auth/hooks/useCurrentUser';
@@ -6,6 +6,7 @@ import { Paths } from 'services/routes/Paths';
 
 const NavLink = ({ name, path }: { name: string; path: Paths }) => {
   const resolved = useResolvedPath(path);
+  const navigate = useNavigate();
   const match = useMatch({ path: resolved.pathname, end: true });
   const isMatch = Boolean(match);
 
@@ -18,6 +19,9 @@ const NavLink = ({ name, path }: { name: string; path: Paths }) => {
       height="100%"
       cursor="pointer"
       borderBottom={isMatch ? 'solid blue' : ''}
+      onClick={() => {
+        navigate(path);
+      }}
     >
       {name}
     </Box>
