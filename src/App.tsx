@@ -1,5 +1,3 @@
-import './App.css';
-
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Button, Flex, Text } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
