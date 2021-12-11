@@ -14,8 +14,9 @@ const App = () => {
 
   return (
     <>
-      <Box border="1px" borderColor="gray.500" m={10}>
-        <Steps activeStep={activeStep} color="blue">
+      <Box border="1px" borderColor="gray.500" m={10} p={7}>
+        {/* Powinno być indigo.600 w colorScheme ale nie działa, pewnie coś easy ale nie korzystałem wcześniej z chakry xD */}
+        <Steps activeStep={activeStep} colorScheme="blue">
           {steps.map((option) => (
             <Step colorScheme="primary" label={option.label} />
           ))}
