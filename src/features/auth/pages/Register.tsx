@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSupabase } from 'use-supabase';
 
-export const Login = () => {
+export const Register = () => {
   const supabase = useSupabase();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      setLoading(true);
+  const handleRegister = async () => {
+    setLoading(true);
 
-      const { error } = await supabase.auth.signIn({ email, password });
+    try {
+      const { error } = await supabase.auth.signUp({ email, password });
 
       setLoading(false);
 
@@ -43,11 +43,11 @@ export const Login = () => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              handleLogin();
+              handleRegister();
             }}
             disabled={loading}
           >
-            {loading ? <span>Loading</span> : <span>Login</span>}
+            {loading ? <span>Loading</span> : <span>Send magic link</span>}
           </button>
         </div>
       </div>
