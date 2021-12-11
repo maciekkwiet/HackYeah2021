@@ -35,7 +35,7 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
           />
         }
       />
-      {isPrivateAccount && (
+      {!isPrivateAccount && (
         <FormInput
           text="Numer KRS"
           input={<Input placeholder="Numer KRS" name="krs" onChange={handleChange} value={krs} />}
