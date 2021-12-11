@@ -3,6 +3,7 @@ import { Layout } from 'components/Layout';
 import { Login } from 'features/auth/pages/Login';
 import { Register } from 'features/auth/pages/Register';
 import { DashboardPage } from 'features/dashboard/pages/DashboardPage';
+import { FindInventory } from 'features/inventory/pages/FindInventory';
 import { FindNeeds } from 'features/inventory/pages/FindNeeds';
 import { MyInventory } from 'features/inventory/pages/MyInventory';
 import { MyNeeds } from 'features/needs/pages/MyNeeds';
@@ -21,6 +22,7 @@ export const Router = () => {
             <Route path={Paths.Transactions} element={<Transaction />} />
             <Route path={Paths.Needs} element={<MyNeeds />} />
             <Route path={Paths.FindNeeds} element={<FindNeeds />} />
+            <Route path={Paths.Inventory} element={<FindInventory />} />
             <Route path={Paths.Dashboard} element={<DashboardPage />} />
           </Route>
         </Route>
