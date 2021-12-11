@@ -1,16 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useSupabase, useUser } from 'use-supabase';
+import { useAuth } from 'services/auth/hooks/useAuth';
 
 import { Paths } from './Paths';
 
 export const RequireAuth = () => {
-  const user = useUser();
-
-  const { auth } = useSupabase();
-
-  const userFromToken = (auth as any).currentUser;
-
-  if (userFromToken && !user) return <p>Loading...</p>;
+  const { user } = useAuth();
 
   if (!user) return <Navigate to={Paths.Login} />;
 

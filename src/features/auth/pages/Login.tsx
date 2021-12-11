@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSupabase } from 'use-supabase';
+import { useSignIn } from 'react-supabase';
 
 export const Login = () => {
-  const supabase = useSupabase();
+  const [, signIn] = useSignIn();
+
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ export const Login = () => {
     try {
       setLoading(true);
 
-      const { error } = await supabase.auth.signIn({ email, password });
+      const { error } = await signIn({ email, password });
 
       setLoading(false);
 

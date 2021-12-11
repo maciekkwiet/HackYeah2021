@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSupabase } from 'use-supabase';
+import { useSignUp } from 'react-supabase';
 
 export const Register = () => {
-  const supabase = useSupabase();
+  const [, signUp] = useSignUp();
+
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ export const Register = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { error } = await signUp({ email, password });
 
       setLoading(false);
 

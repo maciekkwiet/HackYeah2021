@@ -97,7 +97,8 @@ module.exports = {
     '@typescript-eslint/no-throw-literal': 0,
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-implicit-any': 0,
+    '@typescript-eslint/triple-slash-reference': 0,
     'react/button-has-type': 0,
-    'react/jsx-props-no-spreading': 0
+    'react/jsx-props-no-spreading': 0,
   },
 };

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useSignOut } from 'react-supabase';
 import { Paths } from 'services/routes/Paths';
-import { useSupabase } from 'use-supabase';
 
 export const LogoutButton = () => {
-  const { auth } = useSupabase();
+  const [, signOut] = useSignOut();
   const navigate = useNavigate();
 
   const logout = async () => {
-    await auth.signOut();
+    await signOut();
     navigate(Paths.Login);
   };
 
