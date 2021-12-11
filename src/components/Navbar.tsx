@@ -1,7 +1,7 @@
 import { useMatch, useResolvedPath } from 'react-router-dom';
 import { Avatar, Box, Heading, HStack, Image } from '@chakra-ui/react';
 import logo from 'assets/logo.svg';
-import { useIsPrivateUser } from 'services/auth/hooks/useCurrentUser';
+import { useCurrentUser, useIsPrivateUser } from 'services/auth/hooks/useCurrentUser';
 import { Paths } from 'services/routes/Paths';
 
 const NavLink = ({ name, path }: { name: string; path: Paths }) => {
@@ -38,6 +38,7 @@ const shelterNav = [
 
 export const Navbar = () => {
   const isPrivate = useIsPrivateUser();
+  const { profile } = useCurrentUser();
   const items = isPrivate ? userNav : shelterNav;
 
   return (
@@ -49,7 +50,7 @@ export const Navbar = () => {
           <NavLink {...item} />
         ))}
       </HStack>
-      <Avatar margin="1rem" />
+      <Avatar margin="1rem" src={profile.avatar} />
     </Box>
   );
 };

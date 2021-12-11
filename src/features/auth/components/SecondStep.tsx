@@ -1,5 +1,6 @@
 import { ChangeEvent, ReactNode } from 'react';
 import { Box, Input } from '@chakra-ui/react';
+import { FileUpload } from 'components/FileUpload';
 
 import { FormData } from '../pages/Register';
 import { FormHeader } from './FormHeader';
@@ -49,11 +50,14 @@ export const SecondStep = ({ buttons, form, handleChange, isPrivateAccount }: Se
         text="Phone"
         input={<Input placeholder="Phone" name="phone" onChange={handleChange} value={phone} />}
       />
-      <FormInput
-        text={isPrivateAccount ? 'Zdjęcie profilowe' : 'Logo schroniska'}
-        input={<Input placeholder="Zdjęcie profilowe" name="avatar" onChange={handleChange} value={avatar} />}
+      <FileUpload
+        label={isPrivateAccount ? 'Zdjęcie profilowe' : 'Logo schroniska'}
+        onChange={handleChange}
+        name="avatar"
       />
-
+      {/* <FormInput
+        input={<Input placeholder="Zdjęcie profilowe" name="avatar" onChange={handleChange} value={avatar} />}
+      /> */}
       <FormHeader textMain="Dane logowania" textDescription="Hasło zabezpieczające Twoje konto na portalu." />
       <FormInput
         text="Password"
