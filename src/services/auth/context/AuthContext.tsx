@@ -17,8 +17,9 @@ export const AuthContext = createContext(initialState);
 export const AuthProvider: FC = ({ children }) => {
   const { auth } = useClient();
   const [state, setState] = useState<AuthContextValue>({ user: auth.user(), session: auth.session() });
+
   const filter = useFilter((query) => query.eq('userId', state.user?.id), [state.user?.id]);
-  const [{ data: profile }] = useRealtime<Profile>('profiles', {
+  const [{ data: profile }, rerun] = useRealtime<Profile>('profiles', {
     select: { filter },
   });
 
@@ -32,6 +33,7 @@ export const AuthProvider: FC = ({ children }) => {
   useAuthStateChange((event, session) => {
     // console.log(`Supbase auth event: ${event}`, session);
     setState({ session, user: session?.user ?? null });
+    rerun();
   });
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;

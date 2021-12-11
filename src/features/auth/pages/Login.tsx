@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Routes, useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-supabase';
+import { Paths } from 'services/routes/Paths';
 
 export const Login = () => {
   const [, signIn] = useSignIn();
@@ -20,7 +21,7 @@ export const Login = () => {
 
       if (error) throw error;
 
-      navigate('/');
+      navigate(Paths.Dashboard);
     } catch (error) {
       alert(error.error_description || error.message);
     }
