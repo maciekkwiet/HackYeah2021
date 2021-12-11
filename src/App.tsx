@@ -1,45 +1,49 @@
 import './App.css';
 
 import { useState } from 'react';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { Button, Flex, Text } from '@chakra-ui/react';
+import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useUser } from 'use-supabase';
 
-import logo from './logo.svg';
+const content = (
+  <Flex py={4}>
+    <Text fontSize="xs">Lecimy z nimi</Text>
+  </Flex>
+);
+
+const steps = [
+  { label: 'Typ konta', content },
+  { label: 'Podstawowe informacje', content },
+  { label: 'Potwierdzenie', content },
+];
 
 const App = () => {
   const [count, setCount] = useState(0);
   const user = useUser();
-
-  console.log('🚀 ~ file: App.tsx ~ line 11 ~ App ~ user', user);
+  const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
+    initialStep: 0,
+  });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <Steps activeStep={activeStep} color="blue">
+        {steps.map((option) => (
+          <Step colorScheme="primary" label={option.label}>
+            {content}
+          </Step>
+        ))}
+      </Steps>
+
+      <Flex gridGap={10}>
+        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
+          <ArrowBackIcon />
+        </Button>
+        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => nextStep()}>
+          <ArrowForwardIcon />
+        </Button>
+      </Flex>
+    </>
   );
 };
 
