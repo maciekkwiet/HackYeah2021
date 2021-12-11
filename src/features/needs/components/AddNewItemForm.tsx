@@ -1,5 +1,5 @@
 import { Box, FormControl, FormLabel, Input, InputGroup, InputRightElement, Select } from '@chakra-ui/react';
-import { allCategories } from 'consts';
+import { allCategories, piecesCategory, weightCategory } from 'consts';
 
 import { Need } from '../typings/need';
 
@@ -21,17 +21,21 @@ export const AddNewItemForm = ({ category, quantity, weight, handleChange }: Add
           <option value="TRANSPORTERY">Transportery</option>
         </Select>
       </FormControl>
-      <FormControl id="Liczba sztuk">
-        <FormLabel>Liczba sztuk</FormLabel>
-        <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
-      </FormControl>
-      <FormControl id="Waga jednej sztuk">
-        <FormLabel>Waga jednej sztuki</FormLabel>
-        <InputGroup>
-          <Input name="weight" type="number" value={weight} onChange={handleChange} />
-          <InputRightElement children={<Box color="gray.500">kg</Box>} />
-        </InputGroup>
-      </FormControl>
+      {piecesCategory.includes(category) && (
+        <FormControl id="Liczba sztuk">
+          <FormLabel>Liczba sztuk</FormLabel>
+          <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
+        </FormControl>
+      )}
+      {weightCategory.includes(category) && (
+        <FormControl id="Waga jednej sztuk">
+          <FormLabel>Waga jednej sztuki</FormLabel>
+          <InputGroup>
+            <Input name="weight" type="number" value={weight} onChange={handleChange} />
+            <InputRightElement children={<Box color="gray.500">kg</Box>} />
+          </InputGroup>
+        </FormControl>
+      )}
     </Box>
   );
 };
