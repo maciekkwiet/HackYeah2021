@@ -38,7 +38,7 @@ export const ShelterCard = ({ needs, phone, email, logo, name, address, action, 
       </Box>
       <Box border="1px" bg="gray.100" borderColor="gray.100" w="600px" borderRadius="md" h={16}>
         <Flex justify="right" mr={4} mt={3}>
-          <Button mr={3} colorScheme="blue">
+          <Button mr={3} colorScheme="blue" onClick={action}>
             Zaproponuj transakcję
           </Button>
         </Flex>
