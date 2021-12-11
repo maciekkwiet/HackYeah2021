@@ -23,6 +23,7 @@ export const Router = () => {
             <Route path={Paths.Needs} element={<MyNeeds />} />
             <Route path={Paths.FindNeeds} element={<FindNeeds />} />
             <Route path={Paths.FindInventory} element={<FindInventory />} />
+            <Route path={Paths.Transaction} element={<Transaction />} />
             <Route path={Paths.Dashboard} element={<DashboardPage />} />
           </Route>
         </Route>
