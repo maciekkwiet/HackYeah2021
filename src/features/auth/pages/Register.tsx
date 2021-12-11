@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useSignUp, useUpsert } from 'react-supabase';
 import { Box } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import { Profile } from 'services/auth/typings/profile';
 
 import { FirstStep } from '../components/FirstStep';
 import { SecondStep } from '../components/SecondStep';
@@ -10,20 +11,11 @@ import { ThirdStep } from '../components/ThirdStep';
 
 const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
 
-export type AccountType = 'SHELTER' | 'PRIVATE' | 'CORPORATE';
 export type FormData = {
-  accountType: AccountType | string;
-  name: string;
-  street: string;
-  postCode: string;
-  city: string;
-  region: string;
-  // Auth Data:
   email: string;
   password: string;
   phone: string;
-  avatar: string;
-};
+} & Profile;
 
 const initial: FormData = {
   accountType: 'PRIVATE',
