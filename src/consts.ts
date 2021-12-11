@@ -9,3 +9,5 @@ export const piecesCategory = [
   'INNE',
 ];
 export const weightCategory = ['KARMA', 'SMAKOŁYKI', 'INNE'];
+
+export const allCategories = [...new Set([...piecesCategory, ...weightCategory])].sort();

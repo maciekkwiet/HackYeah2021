@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { FileUpload } from 'components/FileUpload';
 
-import { piecesCategory, weightCategory } from '../../../constants';
+import { allCategories, piecesCategory, weightCategory } from '../../../consts';
 import { Inventory } from '../typings/inventory';
 
 export type AddNewItemFormProps = { handleChange: (e: any) => void } & Inventory;
@@ -43,15 +43,9 @@ export const AddNewItemForm = ({
       <FormControl id="Kategoria">
         <FormLabel>Kategoria</FormLabel>
         <Select name="category" value={category} onChange={handleChange}>
-          <option value="KARMA">Karma</option>
-          <option value="ZABAWKI">Zabawki</option>
-          <option value="TRANSPORTERY">Transportery</option>
-          <option value="KOCE">Koce</option>
-          <option value="AKCESORIA">Akcesoria</option>
-          <option value="SRODKI_HIGIENY">Środki higieny</option>
-          <option value="SMAKOŁYKI">Smakołyki</option>
-          <option value="MISKI">Miski</option>
-          <option value="INNE">Inne</option>
+          {allCategories.map((c) => (
+            <option value={c}>{c[0] + c.slice(1).toLowerCase()}</option>
+          ))}
         </Select>
       </FormControl>
       <FileUpload name="image" onChange={handleChange} label="Zdjęcie" />

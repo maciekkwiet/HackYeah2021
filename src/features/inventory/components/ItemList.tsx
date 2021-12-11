@@ -2,7 +2,7 @@ import { Box, Image, Skeleton, Stack, Text } from '@chakra-ui/react';
 import { EmptyState } from 'components/EmptyState';
 import { OurTable } from 'features/auth/components/OurTable';
 
-import { useInventory } from '../hooks/useInventory';
+import { useMyInventory } from '../hooks/useInventory';
 import { useRemoveItem } from '../hooks/useRemoveItem';
 import { InventoryDBItem } from '../typings/inventory';
 import { EditItemModal } from './EditItemModal';
@@ -16,7 +16,7 @@ const itemMapper = (removeItem: (id: string) => Promise<void>) => (item: Invento
 
   return [
     <Box display="flex" alignItems="center">
-      <Image boxSize="60px" src={image} mr="1rem" borderRadius="full" />
+      {image && <Image boxSize="60px" src={image} mr="1rem" borderRadius="full" />}
       <Text display="block" fontWeight="bold">
         {name}
       </Text>
@@ -33,7 +33,7 @@ const itemMapper = (removeItem: (id: string) => Promise<void>) => (item: Invento
   ];
 };
 export const ItemList = ({ onButtonClick }: ItemListProps) => {
-  const [{ data, fetching }] = useInventory();
+  const [{ data, fetching }] = useMyInventory();
   const { removeItem } = useRemoveItem();
 
   if (fetching || !data)
