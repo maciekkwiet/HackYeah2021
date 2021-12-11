@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, Flex, Text } from '@chakra-ui/react';
 import { Step, Steps } from 'chakra-ui-steps';
+import { Paths } from 'services/routes/Paths';
 
 export type ThirdStepProps = { isPrivateAccount: boolean };
 
 export const ThirdStep = ({ isPrivateAccount }: ThirdStepProps) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Container maxW="xl" centerContent mb={10}>
@@ -31,7 +35,14 @@ export const ThirdStep = ({ isPrivateAccount }: ThirdStepProps) => {
           <Button colorScheme="teal" variant="outline" width={200} size="md" onClick={() => {}}>
             <Text fontSize="sm">{isPrivateAccount ? 'Wyszukaj schroniska' : 'Wyszukaj oferty wsparcia'}</Text>
           </Button>
-          <Button width={200} colorScheme="blue" size="md" onClick={() => {}}>
+          <Button
+            width={200}
+            colorScheme="blue"
+            size="md"
+            onClick={() => {
+              navigate(Paths.Dashboard);
+            }}
+          >
             <Text fontSize="sm">{isPrivateAccount ? 'Przejdź do inwentarza' : 'Przejdź do listy potrzeb'}</Text>
           </Button>
         </Flex>

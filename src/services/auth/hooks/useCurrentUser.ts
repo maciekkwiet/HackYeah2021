@@ -16,3 +16,11 @@ export const useCurrentUserFilter = () => {
 
   return { filter };
 };
+
+export const useIsPrivateUser = () => {
+  const {
+    profile: { accountType },
+  } = useCurrentUser();
+
+  return accountType === 'PRIVATE';
+};
