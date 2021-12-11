@@ -98,5 +98,6 @@ module.exports = {
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-implicit-any': 0,
     'react/button-has-type': 0,
+    'react/jsx-props-no-spreading': 0
   },
 };

@@ -1,15 +1,12 @@
-import './App.css';
-
-import { useState } from 'react';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import { LogoutButton } from 'features/auth/components/LogoutButton';
 import { useUser } from 'use-supabase';
 
 const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
 
 const App = () => {
-  const [count, setCount] = useState(0);
   const user = useUser();
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
@@ -24,6 +21,10 @@ const App = () => {
           ))}
         </Steps>
       </Box>
+
+      {user?.email}
+      <br />
+      <LogoutButton />
 
       <Flex gridGap={10}>
         <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
