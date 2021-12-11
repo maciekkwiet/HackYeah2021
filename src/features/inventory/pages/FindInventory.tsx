@@ -4,7 +4,6 @@ import { VicinityProducts } from 'components/VicinityProducts';
 
 import { ItemCard } from '../components/ItemCard';
 import { useMyInventory } from '../hooks/useInventory';
-import { useShelters } from '../hooks/useShelters';
 
 const exampleName = 'schronXxxxxxxxxxxxx';
 const exampleCategory = 'KARMA';
@@ -18,7 +17,6 @@ export const FindInventory = ({ isPrivateAccount }: { isPrivateAccount: boolean 
     console.log('Lecimy z transakcją');
   };
 
-  const a = useShelters();
   const [{ data }] = useMyInventory();
 
   return (

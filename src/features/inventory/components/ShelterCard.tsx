@@ -1,14 +1,16 @@
 import { BellIcon, CheckIcon } from '@chakra-ui/icons';
 import { Badge, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
-import logoApp from 'assets/logo.svg';
+import { useOverlap } from 'features/transactions/hooks/useOverlap';
 
-export const ShelterCard = ({ needs, phone, email, logo, name, address, action, offersPickupOfThings }: any) => {
+export const ShelterCard = ({ id, needs, phone, email, logo, name, address, action, offersPickupOfThings }: any) => {
+  const { theirs, overlap } = useOverlap(id);
+
   return (
     <>
       <Box border="1px" borderColor="gray.100" w="600px" borderRadius="md" mt={4}>
         <Flex gridGap={10} mb={4} justify="space-between">
-          <Flex>
-            <Image src={logoApp} alt="" marginLeft="1rem" />
+          <Flex alignItems="center">
+            <Image src={logo} boxSize={20} borderRadius="full" alt="" marginLeft="1rem" />
             <Box ml={5} mt={5}>
               <Box textStyle="h2">{name}</Box>
               <Text color="gray.500">{address}</Text>
@@ -28,10 +30,10 @@ export const ShelterCard = ({ needs, phone, email, logo, name, address, action, 
           )}
         </Flex>
         <Flex ml={5} mb={5}>
-          {needs.map((need: any) => (
+          {theirs?.map((need: any) => (
             <Box mr={4}>
               <CheckIcon mt={1} />
-              <Badge>{need}</Badge>
+              <Badge colorScheme={overlap?.some((o) => o.id === need.id) ? 'green' : ''}>{need.category}</Badge>
             </Box>
           ))}
         </Flex>

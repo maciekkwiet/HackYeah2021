@@ -8,4 +8,5 @@ export type Profile = {
   city: string;
   region: string;
   avatar: string;
+  phone: string;
 };

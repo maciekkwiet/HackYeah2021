@@ -1,7 +1,9 @@
 import { Box, Heading } from '@chakra-ui/react';
 import { LookUp } from 'components/LookUp';
 import { VicinityShelter } from 'components/VicinityShelter';
+
 import { ShelterCard } from '../components/ShelterCard';
+import { useShelters } from '../hooks/useShelters';
 
 export const FindNeeds = ({ isPrivateAccount }: { isPrivateAccount: boolean }) => {
   const exampleNeeds = ['Example 1', 'Example 2', 'Example 3'];
@@ -14,6 +16,11 @@ export const FindNeeds = ({ isPrivateAccount }: { isPrivateAccount: boolean }) =
   const transaction = () => {
     console.log('Lecimy z transakcją');
   };
+  const [{ data }] = useShelters();
+
+  console.log('🚀 ~ file: FindNeeds.tsx ~ line 20 ~ FindNeeds ~ data', data);
+
+  const shelters = data ?? [];
 
   return (
     <Box>
@@ -25,32 +32,24 @@ export const FindNeeds = ({ isPrivateAccount }: { isPrivateAccount: boolean }) =
         <VicinityShelter
           distance={0}
           handleDistanceChange={() => {}}
-          isNeedItemsFromMyInventory
-          canTakeMyProducts
+          isNeedItemsFromMyInventory={false}
+          canTakeMyProducts={false}
           handleNeedItemsFromInvetory={() => {}}
           handleCanTakeMyProducts={() => {}}
         />
         <Box>
-          <ShelterCard
-            needs={exampleNeeds}
-            phone={examplePhone}
-            email={exampleEmail}
-            logo={exampleLogo}
-            name={exampleName}
-            address={exampleAddress}
-            action={transaction}
-            offersPickupOfThings
-          />
-          <ShelterCard
-            needs={exampleNeeds}
-            phone={examplePhone}
-            email={exampleEmail}
-            logo={exampleLogo}
-            name={exampleName}
-            address={exampleAddress}
-            action={transaction}
-            offersPickupOfThings
-          />
+          {shelters.map((shelter) => (
+            <ShelterCard
+              id={shelter.userId}
+              needs={exampleNeeds}
+              phone={shelter.phone}
+              logo={shelter.avatar}
+              name={shelter.name}
+              address={shelter.city}
+              action={transaction}
+              offersPickupOfThings
+            />
+          ))}
         </Box>
       </Box>
     </Box>

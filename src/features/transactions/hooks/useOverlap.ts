@@ -5,10 +5,9 @@ import { InventoryDBItem } from 'features/inventory/typings/inventory';
 export const useOverlap = (counterpartyId: string) => {
   const filter = useFilter((query) => query.eq('userId', counterpartyId));
   const [{ data: ours }] = useMyInventory();
-  const [{ data: theirs }] = useRealtime<InventoryDBItem>('inventory', { select: { filter } });
+  const [{ data: theirs }] = useRealtime<InventoryDBItem>('need', { select: { filter } });
 
-  console.log('🚀 ~ file: useOverlap.ts ~ line 8 ~ useOverlap ~ ours', ours);
-  console.log('🚀 ~ file: useOverlap.ts ~ line 12 ~ useOverlap ~ theirs', theirs);
+  const overlap = theirs?.filter((t) => ours?.some((o) => o.category === t.category));
 
-  return { data: {} };
+  return { ours, theirs, overlap };
 };
