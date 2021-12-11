@@ -1,6 +1,7 @@
 import { Box, Heading } from '@chakra-ui/react';
 
 import { ItemCard } from '../components/ItemCard';
+import { useShelters } from '../hooks/useShelters';
 
 const exampleName = 'schronXxxxxxxxxxxxx';
 const exampleCategory = 'KARMA';
@@ -13,6 +14,8 @@ export const FindInventory = () => {
   const transaction = () => {
     console.log('Lecimy z transakcją');
   };
+
+  const a = useShelters();
 
   return (
     <Box>
