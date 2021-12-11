@@ -8,7 +8,7 @@ export type StepButtonsProps = {
 
 export const StepButtons = ({ prevStep, nextStep }: StepButtonsProps) => {
   return (
-    <Flex gridGap={10}>
+    <Flex gridGap={10} justify={prevStep && nextStep ? 'space-between' : 'right'} m={10}>
       {prevStep && (
         <Button
           colorScheme="teal"

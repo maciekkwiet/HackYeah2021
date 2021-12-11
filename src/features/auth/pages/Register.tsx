@@ -61,6 +61,7 @@ export const Register = () => {
       alert(ex?.message ?? 'Nie znany błąd');
     }
   };
+  const [radioValue, setRadioValue] = useState('1');
 
   return (
     <>
@@ -73,7 +74,7 @@ export const Register = () => {
         </Box>
         <Text fontSize="md">Załóż konto na platformie Pet Share</Text>
       </Container>
-      <Box border="1px" borderColor="gray.500" m={10} p={7}>
+      <Box border="1px" borderColor="gray.500" borderRadius="md" m={10} p={7}>
         {/* Powinno być indigo.600 w colorScheme ale nie działa, pewnie coś easy ale nie korzystałem wcześniej z chakry xD */}
         <Steps activeStep={activeStep} colorScheme="blue">
           {steps.map((option) => (
@@ -83,7 +84,11 @@ export const Register = () => {
       </Box>
 
       {activeStep === 0 && (
-        <FirstStep form={form} handleChange={handleChange} buttons={<StepButtons nextStep={nextStep} />} />
+        <FirstStep
+          radioValue={radioValue}
+          setRadioValue={setRadioValue}
+          buttons={<StepButtons nextStep={nextStep} />}
+        />
       )}
       {activeStep === 1 && (
         <SecondStep

@@ -16,6 +16,11 @@ export const theme = extendTheme({
       fontWeight: 'bold',
       lineHeight: '28px',
     },
+    h3: {
+      fontSize: ['10px', '16px'],
+      fontWeight: 'bold',
+      lineHeight: '28px',
+    },
   },
   colors: {
     brand: {

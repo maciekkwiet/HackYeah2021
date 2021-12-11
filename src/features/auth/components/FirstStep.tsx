@@ -1,23 +1,16 @@
-import { ChangeEvent, ReactNode } from 'react';
-import { Select } from '@chakra-ui/react';
+import { ReactNode } from 'react';
+import { Box } from '@chakra-ui/react';
 
-import { FormData } from '../pages/Register';
+import { RadioComponent } from './RadioGroup';
 
-export type FirstStepProps = {
-  form: FormData;
-  handleChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
-  buttons: ReactNode;
-};
-
-export const FirstStep = ({ buttons, handleChange }: FirstStepProps) => {
+export type FirstStepProps = { buttons: ReactNode; setRadioValue: any; radioValue: any };
+export const FirstStep = ({ buttons, setRadioValue, radioValue }: FirstStepProps) => {
   return (
-    <div>
-      <Select name="accountType" placeholder="Select option" onChange={handleChange}>
-        <option value="SHELTER">SHELTER 1</option>
-        <option value="PRIVATE">PRIVATE 2</option>
-        <option value="CORPORATE">CORPORATE 3</option>
-      </Select>
-      {buttons}
-    </div>
+    <>
+      <Box border="1px" borderColor="gray.500" borderRadius="md" m={10} p={7}>
+        <RadioComponent setRadioValue={setRadioValue} radioValue={radioValue} />
+      </Box>
+      <div>{buttons}</div>;
+    </>
   );
 };
