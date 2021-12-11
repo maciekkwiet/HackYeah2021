@@ -90,9 +90,7 @@ export const Register = () => {
           buttons={<StepButtons prevStep={prevStep} nextStep={registerUser} />}
         />
       )}
-      {activeStep === 2 && (
-        <ThirdStep buttons={<StepButtons prevStep={prevStep} />} isPrivateAccount={form.accountType === 'PRIVATE'} />
-      )}
+      {activeStep === 2 && <ThirdStep isPrivateAccount={form.accountType === 'PRIVATE'} />}
     </>
   );
 };

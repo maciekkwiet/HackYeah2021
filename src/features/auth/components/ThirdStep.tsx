@@ -1,10 +1,9 @@
-import { ReactNode } from 'react';
-import { Container, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Text } from '@chakra-ui/react';
 import { Step, Steps } from 'chakra-ui-steps';
 
-export type ThirdStepProps = { buttons: ReactNode; isPrivateAccount: boolean };
+export type ThirdStepProps = { isPrivateAccount: boolean };
 
-export const ThirdStep = ({ buttons, isPrivateAccount }: ThirdStepProps) => {
+export const ThirdStep = ({ isPrivateAccount }: ThirdStepProps) => {
   return (
     <>
       <Container maxW="xl" centerContent mb={10}>
@@ -14,20 +13,29 @@ export const ThirdStep = ({ buttons, isPrivateAccount }: ThirdStepProps) => {
             justifyContent: 'center',
           }}
         >
-          <Step colorScheme="primary" label="" />
+          <Step colorScheme="green.100" label="" />
         </Steps>
       </Container>
       <Container maxW="sm" centerContent mb={10}>
-        <Text fontSize="sm">
+        <Box textStyle="h2">
           {isPrivateAccount ? 'Twoje konto zostało utworzone' : 'Utworzono konto dla Twojego schroniska'}
-        </Text>
-        <Text fontSize="sm">
+        </Box>
+        <Text fontSize="sm" align="center">
           {isPrivateAccount
             ? 'Możesz teraz przejść to swojego inwentarza, aby dodać przedmioty, które chcesz przekazać/sprzedać schroniskom. Możesz także skorzystać z wyszukiwarki, aby odnaleźć schroniska potrzebujące wsparcia.'
             : 'Możesz teraz przejść to swojej listy potrzeb, aby określić, jakie przedmioty są potrzebne Twojemu schronisku. Możesz także skorzystać z wyszukiwarki, aby zobaczyć istniejące oferty wsparcia materialnego.'}
         </Text>
       </Container>
-      <div>{buttons}</div>
+      <Container maxW="sm" centerContent mb={10}>
+        <Flex gridGap={10}>
+          <Button colorScheme="teal" variant="outline" width={200} size="md" onClick={() => {}}>
+            <Text fontSize="sm">{isPrivateAccount ? 'Wyszukaj schroniska' : 'Wyszukaj oferty wsparcia'}</Text>
+          </Button>
+          <Button width={200} colorScheme="blue" size="md" onClick={() => {}}>
+            <Text fontSize="sm">{isPrivateAccount ? 'Przejdź do inwentarza' : 'Przejdź do listy potrzeb'}</Text>
+          </Button>
+        </Flex>
+      </Container>
     </>
   );
 };
