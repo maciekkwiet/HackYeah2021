@@ -5,7 +5,7 @@ import { useUser } from 'use-supabase';
 
 const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
 
-const Register = () => {
+export const Register = () => {
   const user = useUser();
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
@@ -33,8 +33,6 @@ const Register = () => {
     </>
   );
 };
-
-export default Register;
 
 // import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
