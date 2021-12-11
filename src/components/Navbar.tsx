@@ -25,14 +25,14 @@ const NavLink = ({ name, path }: { name: string; path: Paths }) => {
 };
 
 const userNav = [
-  { name: 'Wyszukaj schroniska', path: Paths.Needs },
-  { name: 'Moje transakcje', path: Paths.Needs },
+  { name: 'Wyszukaj schroniska', path: Paths.FindNeeds },
+  { name: 'Moje transakcje', path: Paths.Transactions },
   { name: 'Mój inwentarz', path: Paths.Inventory },
 ];
 
 const shelterNav = [
-  { name: 'Wyszukaj przedmioty', path: Paths.Dashboard },
-  { name: 'Moje transakcje', path: Paths.Dashboard },
+  { name: 'Wyszukaj przedmioty', path: Paths.FindInventory },
+  { name: 'Moje transakcje', path: Paths.Transactions },
   { name: 'Moje potrzeby', path: Paths.Needs },
 ];
 
