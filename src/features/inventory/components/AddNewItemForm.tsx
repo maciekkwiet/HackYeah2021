@@ -43,7 +43,8 @@ export const AddNewItemForm = ({
         <FormLabel>Kategoria</FormLabel>
         <Select name="category" value={category} onChange={handleChange}>
           <option value="KARMA">Karma</option>
-          <option value="NOT_KARMA">Nie karma</option>
+          <option value="ZABAWKI">Zabawki</option>
+          <option value="TRANSPORTERY">Transportery</option>
         </Select>
       </FormControl>
       <FormControl id="Zdjęcie">
@@ -55,14 +56,14 @@ export const AddNewItemForm = ({
         <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
       </FormControl>
       <FormControl id="Waga jednej sztuk">
-        <FormLabel>Waga jednej sztuk</FormLabel>
+        <FormLabel>Waga jednej sztuki</FormLabel>
         <InputGroup>
           <Input name="weight" type="number" value={weight} onChange={handleChange} />
           <InputRightElement children={<Box color="gray.500">kg</Box>} />
         </InputGroup>
       </FormControl>
       <FormControl id="Cena jednej sztuk" mb="0.4rem">
-        <FormLabel>Cena jednej sztuk</FormLabel>
+        <FormLabel>Cena jednej sztuki</FormLabel>
         <InputGroup>
           <Input name="price" type="number" value={price} onChange={handleChange} />
           <InputRightElement children={<Box color="gray.500">zł</Box>} />
