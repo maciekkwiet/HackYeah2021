@@ -584,6 +584,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chakra-ui/icon@npm:1.2.1":
+  version: 1.2.1
+  resolution: "@chakra-ui/icon@npm:1.2.1"
+  dependencies:
+    "@chakra-ui/utils": 1.9.1
+  peerDependencies:
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: e388267e7bc15f8b91d389e85fb5ba01cb60a0d4405a8d9e76aa743849d917a12632958e1a8eb373d8257fbd2a0e7550eba3daa0b9a719d688f05f97b6ae830f
+  languageName: node
+  linkType: hard
+
 "@chakra-ui/icon@npm:2.0.0":
   version: 2.0.0
   resolution: "@chakra-ui/icon@npm:2.0.0"
@@ -593,6 +605,19 @@ __metadata:
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
   checksum: 31f0173ed6202f0e26a0e92ee81993366a71512e0e51daf58d32e692019d91e5d103512a66cafdee9a108a0132f31207402618fb3b3b7611165de7dc74651bf0
+  languageName: node
+  linkType: hard
+
+"@chakra-ui/icons@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@chakra-ui/icons@npm:1.1.1"
+  dependencies:
+    "@chakra-ui/icon": 1.2.1
+    "@types/react": ^17.0.15
+  peerDependencies:
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: 9fd27ca483cd4772bdb02c2febb7495fb83da61fd5da1797b954277d2d60ca9b4418d9c421bd3fef52770fff57db672a5c626830927d9bee4336a70c7ceee89e
   languageName: node
   linkType: hard
 
@@ -1609,7 +1634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:17.0.37":
+"@types/react@npm:*, @types/react@npm:17.0.37, @types/react@npm:^17.0.15":
   version: 17.0.37
   resolution: "@types/react@npm:17.0.37"
   dependencies:
@@ -2073,6 +2098,19 @@ __metadata:
   version: 1.0.30001286
   resolution: "caniuse-lite@npm:1.0.30001286"
   checksum: 04de4742552d4aeb713677b40693d9ac1fbd259573e0ff739565278bcecb6f398f3227546a4e930f4d5cf95b61458f4a53c9c1f90f5b0c4f6063b32e4c54b89e
+  languageName: node
+  linkType: hard
+
+"chakra-ui-steps@npm:1.5.0":
+  version: 1.5.0
+  resolution: "chakra-ui-steps@npm:1.5.0"
+  peerDependencies:
+    "@chakra-ui/react": ">=1.6.7"
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
+    framer-motion: ^4
+    react: ">=16"
+  checksum: 873dbf8e6d6ae631b60fd62730d68daa6f27af7b980430b5c79717e35d5099f54eac7e62e1915c95beb8c9f9874fe4316b3752655fc54c73809a31be9a151006
   languageName: node
   linkType: hard
 
@@ -3385,6 +3423,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "hack-yeah-2021@workspace:."
   dependencies:
+    "@chakra-ui/icons": 1.1.1
     "@chakra-ui/react": 1.7.3
     "@emotion/react": 11
     "@emotion/styled": 11
@@ -3395,6 +3434,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.6.0
     "@typescript-eslint/parser": 5.6.0
     "@vitejs/plugin-react": 1.1.1
+    chakra-ui-steps: 1.5.0
     eslint: 8.4.1
     eslint-config-airbnb: 19.0.2
     eslint-config-airbnb-typescript: 16.1.0
