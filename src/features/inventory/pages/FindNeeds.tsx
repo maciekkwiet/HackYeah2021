@@ -27,6 +27,16 @@ export const FindNeeds = () => {
         action={transaction}
         offersPickupOfThings
       />
+      <ShelterCard
+        needs={exampleNeeds}
+        phone={examplePhone}
+        email={exampleEmail}
+        logo={exampleLogo}
+        name={exampleName}
+        address={exampleAddress}
+        action={transaction}
+        offersPickupOfThings
+      />
     </Box>
   );
 };
