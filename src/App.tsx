@@ -1,19 +1,7 @@
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { Button, Flex, Text } from '@chakra-ui/react';
-import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import { useSteps } from 'chakra-ui-steps';
 import { LogoutButton } from 'features/auth/components/LogoutButton';
 
-const content = (
-  <Flex py={4}>
-    <Text fontSize="xs">Lecimy z nimi</Text>
-  </Flex>
-);
-
-const steps = [
-  { label: 'Typ konta', content },
-  { label: 'Podstawowe informacje', content },
-  { label: 'Potwierdzenie', content },
-];
+const steps = [{ label: 'Typ konta' }, { label: 'Podstawowe informacje' }, { label: 'Potwierdzenie' }];
 
 const App = () => {
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
@@ -23,22 +11,6 @@ const App = () => {
   return (
     <>
       <LogoutButton />
-      <Steps activeStep={activeStep} color="blue">
-        {steps.map((option) => (
-          <Step colorScheme="primary" label={option.label}>
-            {content}
-          </Step>
-        ))}
-      </Steps>
-
-      <Flex gridGap={10}>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => prevStep()}>
-          <ArrowBackIcon />
-        </Button>
-        <Button {...{ nextStep, prevStep }} width={250} size="md" onClick={() => nextStep()}>
-          <ArrowForwardIcon />
-        </Button>
-      </Flex>
     </>
   );
 };
