@@ -1,4 +1,4 @@
-import { Box, Skeleton, Stack, Text } from '@chakra-ui/react';
+import { Box, Image, Skeleton, Stack, Text } from '@chakra-ui/react';
 import { EmptyState } from 'components/EmptyState';
 import { OurTable } from 'features/auth/components/OurTable';
 
@@ -12,11 +12,14 @@ export type ItemListProps = {
 };
 
 const itemMapper = (removeItem: (id: string) => Promise<void>) => (item: InventoryDBItem) => {
-  const { id, name, price, quantity, expirationDate } = item;
+  const { id, name, price, quantity, expirationDate, image } = item;
 
   return [
-    <Box>
-      <Text fontWeight="bold">{name}</Text>
+    <Box display="flex" alignItems="center">
+      <Image boxSize="60px" src={image} mr="1rem" borderRadius="full" />
+      <Text display="block" fontWeight="bold">
+        {name}
+      </Text>
     </Box>,
     <Text>{price}</Text>,
     <Text>{quantity}</Text>,

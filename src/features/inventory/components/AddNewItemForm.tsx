@@ -11,6 +11,7 @@ import {
   Select,
   Textarea,
 } from '@chakra-ui/react';
+import { FileUpload } from 'components/FileUpload';
 
 import { Inventory } from '../typings/inventory';
 
@@ -21,7 +22,6 @@ export const AddNewItemForm = ({
   description,
   category,
   expirationDate,
-  image,
   price,
   quantity,
   weight,
@@ -46,10 +46,7 @@ export const AddNewItemForm = ({
           <option value="NOT_KARMA">Nie karma</option>
         </Select>
       </FormControl>
-      <FormControl id="Zdjęcie">
-        <FormLabel>Zdjęcie</FormLabel>
-        <Input name="image" type="text" value={image} onChange={handleChange} />
-      </FormControl>
+      <FileUpload name="image" onChange={handleChange} label="Zdjęcie" />
       <FormControl id="Liczba sztuk">
         <FormLabel>Liczba sztuk</FormLabel>
         <Input name="quantity" type="number" value={quantity} onChange={handleChange} />
