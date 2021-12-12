@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Box, Container, Spinner, Text } from '@chakra-ui/react';
+import { Box, Container, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PersonBox } from 'features/inventory/components/PersonSingleBox';
 
 import { useTransaction } from '../hooks/useTransaction';
@@ -8,7 +8,12 @@ export const Transaction = () => {
   const { id } = useParams();
   const [{ data }] = useTransaction(Number(id!));
 
-  if (!data) return <Spinner />;
+  if (!data)
+    return (
+      <Flex justify="center">
+        <Spinner />;
+      </Flex>
+    );
 
   const transaction = data[0];
 

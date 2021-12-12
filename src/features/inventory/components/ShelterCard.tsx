@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { BellIcon, CheckIcon } from '@chakra-ui/icons';
+import { BellIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import {
   Badge,
   Box,
@@ -70,17 +70,19 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
           {offersPickupOfThings && (
             <Badge colorScheme="blue" mb={20} mr={7} mt={7}>
               <Flex>
-                <BellIcon mt={1} />
-                <Text color="blue.400">Oferuje odbiór rzeczy</Text>
+                <BellIcon mt={1} color="blue.500" position="relative" top="-2px" />
+                <Text color="blue.500">Oferuje odbiór rzeczy</Text>
               </Flex>
             </Badge>
           )}
         </Flex>
         <Flex ml={5} mb={5}>
           {theirs?.map((need: any) => (
-            <Box mr={4}>
-              <CheckIcon mt={1} />
-              <Badge colorScheme={overlap?.some((o) => o.id === need.id) ? 'green' : ''}>{need.category}</Badge>
+            <Box mr={4} bg={overlap?.some((o) => o.id === need.id) ? 'green.100' : ''}>
+              <Box mb={2}>
+                {overlap?.some((o) => o.id === need.id) ? <CheckIcon mt={1} /> : <CloseIcon mt={1} />}
+                <Badge colorScheme={overlap?.some((o) => o.id === need.id) ? 'green' : ''}>{need.category}</Badge>
+              </Box>
             </Box>
           ))}
         </Flex>
