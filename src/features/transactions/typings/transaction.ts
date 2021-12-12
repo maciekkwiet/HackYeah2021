@@ -8,3 +8,5 @@ export type TransactionPayload = {
 export type Transaction = {
   id: number;
 } & TransactionPayload;
+
+export type Status = 'SUBMITTED' | 'ACCEPTED' | 'DECLINED' | 'FINISHED';
