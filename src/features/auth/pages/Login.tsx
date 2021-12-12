@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-supabase';
+import { Box, Button, Container, Flex, Image, Input, Text } from '@chakra-ui/react';
 import { Paths } from 'services/routes/Paths';
+
+import Logo from '../../../assets/logo.png';
+import { FormInput } from '../components/FormInput';
 
 export const Login = () => {
   const [, signIn] = useSignIn();
@@ -11,7 +15,9 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
 
@@ -28,31 +34,38 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Supabase + React</h1>
-        <p>Sign up with your email below</p>
-        <div>
-          <input type="email" placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input
+    <Box m={20}>
+      <Container maxW="xl" centerContent mb={10} mt={10}>
+        <Image boxSize="100px" src={Logo} alt="Logo" />
+      </Container>
+      <Container maxW="sm" centerContent mb={10}>
+        <Box textStyle="h1" mb={4}>
+          Logowanie
+        </Box>
+        <Text fontSize="md">Zaloguj się do platformy Pet Share</Text>
+      </Container>
+      <FormInput
+        text="Email"
+        input={<Input placeholder="Email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />}
+      />
+      <FormInput
+        text="Hasło"
+        input={
+          <Input
             type="password"
-            placeholder="Your password"
-            value={password}
+            placeholder="Hasło"
+            name="password"
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
-        </div>
-        <div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleLogin();
-            }}
-            disabled={loading}
-          >
-            {loading ? <span>Loading</span> : <span>Login</span>}
-          </button>
-        </div>
-      </div>
-    </div>
+        }
+      />
+      <Box m={20} />
+      <Flex justify="center">
+        <Button width={200} colorScheme="blue" size="md" onClick={(e) => handleLogin(e)}>
+          <Text fontSize="md">Zaloguj</Text>
+        </Button>
+      </Flex>
+    </Box>
   );
 };

@@ -108,7 +108,7 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
             />
             <Box h={10} />
             <Box textStyle="h2">Twój inwentarz</Box>
-            <Text>Wybierz przedmioty, które chesz oddać/sprzedać w ramach transakcji.</Text>
+            <Text color="gray.400">Wybierz przedmioty, które chesz oddać/sprzedać w ramach transakcji.</Text>
             <Box h={5} />
             <TransactionTable
               columns={['Przedmiot', 'Cena za szt.', 'Data Ważności', 'Ilość']}
