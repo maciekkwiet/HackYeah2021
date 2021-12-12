@@ -1,5 +1,7 @@
+import { MdLogout } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useSignOut } from 'react-supabase';
+import { Button } from '@chakra-ui/react';
 import { Paths } from 'services/routes/Paths';
 
 export const LogoutButton = () => {
@@ -11,5 +13,5 @@ export const LogoutButton = () => {
     navigate(Paths.Login);
   };
 
-  return <button onClick={logout}>Wyloguj</button>;
+  return <MdLogout cursor="pointer" size="2rem" onClick={logout} />;
 };

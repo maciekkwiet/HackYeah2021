@@ -1,5 +1,5 @@
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
-import { Avatar, Box, Heading, HStack, Image } from '@chakra-ui/react';
+import { Avatar, Box, Flex, Heading, HStack, Image } from '@chakra-ui/react';
 import logo from 'assets/logo.svg';
 import { LogoutButton } from 'features/auth/components/LogoutButton';
 import { useCurrentUser, useIsPrivateUser } from 'services/auth/hooks/useCurrentUser';
@@ -55,8 +55,10 @@ export const Navbar = () => {
           <NavLink {...item} />
         ))}
       </HStack>
-      <Avatar margin="1rem" src={profile.avatar} />
-      {/* <LogoutButton /> */}
+      <Flex alignItems="center" mr="1rem">
+        <Avatar margin="1rem" src={profile.avatar} />
+        <LogoutButton />
+      </Flex>
     </Box>
   );
 };
