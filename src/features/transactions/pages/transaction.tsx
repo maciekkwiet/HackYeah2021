@@ -50,7 +50,7 @@ export const Transaction = () => {
         <Status item={transaction} />
       </Flex>
 
-      <Feed />
+      <Feed transaction={transaction} />
     </Flex>
   );
 };
