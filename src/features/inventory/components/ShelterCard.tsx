@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { BellIcon, CheckIcon } from '@chakra-ui/icons';
 import {
   Badge,
@@ -18,6 +19,7 @@ import {
 import { useNewTransaction } from 'features/transactions/hooks/useNewTransaction';
 import { useOverlap } from 'features/transactions/hooks/useOverlap';
 import { useCurrentUser } from 'services/auth/hooks/useCurrentUser';
+import { Paths } from 'services/routes/Paths';
 
 import { useMyInventory } from '../hooks/useInventory';
 import { PersonBox } from './PersonBox';
@@ -33,9 +35,6 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
   const quantityInput: number[] = [];
 
   const handleSubmit = async () => {
-    console.log(overlap);
-    console.log(theirs);
-    console.log(data);
     await addNewTransaction({
       giver: profile.userId as string, // id usera
       taker: id, // id schroniska
@@ -43,12 +42,11 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
       status: 'SUBMITTED',
     });
     onClose();
+
+    return <Navigate to={Paths.Transactions} />;
   };
 
   const handleChange = (e: any, id: any) => {
-    // console.log(e);
-    // console.log(id);
-
     const quantity = e?.nativeEvent?.data;
 
     quantityInput.push(id);
