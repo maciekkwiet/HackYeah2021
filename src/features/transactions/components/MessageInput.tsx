@@ -1,15 +1,29 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Box, Input } from '@chakra-ui/react';
 
 export type MessageProps = {
-  value: string;
-  handleChange: (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+  handleSubmit: (msg: string) => void;
 };
 
-export const MessageInput = ({ value, handleChange }: MessageProps) => {
+export const MessageInput = ({ handleSubmit }: MessageProps) => {
+  const [value, setValue] = useState('');
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(value);
+    setValue('');
+  };
+
   return (
-    <Box width="30%">
-      <Input value={value} type="text" onChange={handleChange} cursor="pointer" placeholder="Treść wiadomości..." />
+    <Box width="70%">
+      <form onSubmit={onSubmit}>
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          type="text"
+          cursor="pointer"
+          placeholder="Treść wiadomości..."
+        />
+      </form>
     </Box>
   );
 };
