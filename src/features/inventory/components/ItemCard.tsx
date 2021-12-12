@@ -1,5 +1,4 @@
 import { Badge, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
-import logoApp from 'assets/logo.svg';
 
 export const ItemCard = ({ logo, name, category, owner, quantity, description, action }: any) => {
   return (
@@ -7,10 +6,10 @@ export const ItemCard = ({ logo, name, category, owner, quantity, description, a
       <Box border="1px" borderColor="gray.100" w="600px" borderRadius="md" mt={4}>
         <Flex gridGap={10} justify="space-between">
           <Flex>
-            <Image src={logoApp} alt="LOGO" marginLeft="1rem" />
-            <Box ml={5} mt={5}>
+            <Image src={logo} alt="LOGO" boxSize="80px" marginLeft="1rem" />
+            <Box ml={5} mt={5} w="300px">
               <Box textStyle="h2">{name}</Box>
-              <Text color="gray.500">Posiadacz: {owner}</Text>
+              <Text color="gray.500">Termin ważności: {owner?.length ? owner : '-'}</Text>
               <Text color="gray.500">Ilość: {quantity}</Text>
             </Box>
           </Flex>

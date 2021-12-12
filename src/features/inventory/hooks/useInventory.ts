@@ -14,3 +14,7 @@ export const useInventoryItems = (ids: number[]) => {
 
   return useRealtime<InventoryDBItem>('inventory', { select: { filter } });
 };
+
+export const useAllInventoryItems = () => {
+  return useRealtime<InventoryDBItem>('inventory');
+};

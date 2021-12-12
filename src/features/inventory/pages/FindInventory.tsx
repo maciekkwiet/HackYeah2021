@@ -3,21 +3,16 @@ import { LookUp } from 'components/LookUp';
 import { VicinityProducts } from 'components/VicinityProducts';
 
 import { ItemCard } from '../components/ItemCard';
-import { useMyInventory } from '../hooks/useInventory';
-
-const exampleName = 'schronXxxxxxxxxxxxx';
-const exampleCategory = 'KARMA';
-const exampleLogo = 'Logo';
-const exampleOwner = 'Jan Kowalski';
-const exampleQuantity = '6';
-const exampleDescription = 'asasdadasdadasdwhkfbajkfsldfahnsdf;kjn';
+import { useAllInventoryItems } from '../hooks/useInventory';
 
 export const FindInventory = ({ isPrivateAccount }: { isPrivateAccount: boolean }) => {
   const transaction = () => {
     console.log('Lecimy z transakcją');
   };
 
-  const [{ data }] = useMyInventory();
+  const [{ data }] = useAllInventoryItems();
+
+  const inventory = data ?? [];
 
   return (
     <Box>
@@ -32,24 +27,17 @@ export const FindInventory = ({ isPrivateAccount }: { isPrivateAccount: boolean 
           productsNeeded={data?.map((d) => d.name) ?? []}
         />
         <Box>
-          <ItemCard
-            logo={exampleLogo}
-            name={exampleName}
-            category={exampleCategory}
-            owner={exampleOwner}
-            quantity={exampleQuantity}
-            description={exampleDescription}
-            action={transaction}
-          />
-          <ItemCard
-            logo={exampleLogo}
-            name={exampleName}
-            category={exampleCategory}
-            owner={exampleOwner}
-            quantity={exampleQuantity}
-            description={exampleDescription}
-            action={transaction}
-          />
+          {inventory.map((element) => (
+            <ItemCard
+              logo={element?.image}
+              name={element?.name}
+              category={element?.category}
+              owner={element?.expirationDate}
+              quantity={element?.quantity}
+              description={element?.description}
+              action={transaction}
+            />
+          ))}
         </Box>
       </Box>
     </Box>

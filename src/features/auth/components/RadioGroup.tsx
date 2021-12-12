@@ -17,15 +17,15 @@ export const RadioComponent = ({ onChange }: Props) => {
   return (
     <RadioGroup onChange={handleChange} value={radioValue}>
       <Stack direction="column">
-        <Radio value="SHELTER">
+        <Radio value="SHELTER" spacing="2rem">
           <Box textStyle="h3">Schronisko</Box>
           <Text fontSize="md">Chcę wykorzystać platformę do pozyskiwania wsparcia materialnego.</Text>
         </Radio>
-        <Radio value="PRIVATE">
+        <Radio value="PRIVATE" spacing="2rem">
           <Box textStyle="h3">Konto prywatne</Box>
           <Text fontSize="md">Chcę wspierać schroniska materialnie jako pojedyncza osoba.</Text>
         </Radio>
-        <Radio value="CORPORATE">
+        <Radio value="CORPORATE" spacing="2rem">
           <Box textStyle="h3">Konto firmow</Box>
           <Text fontSize="md">Chcę wspierać schroniska jako firma lub organizacja trzeciego sektora.</Text>
         </Radio>
