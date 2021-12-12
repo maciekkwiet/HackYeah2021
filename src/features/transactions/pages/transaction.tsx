@@ -2,7 +2,9 @@ import { useParams } from 'react-router-dom';
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PersonBox } from 'features/inventory/components/PersonSingleBox';
 
+import { Feed } from '../components/Feed';
 import { Items } from '../components/Items';
+import { MessageDisplay } from '../components/Message';
 import { Status } from '../components/Status';
 import { useTransaction } from '../hooks/useTransaction';
 
@@ -48,7 +50,7 @@ export const Transaction = () => {
         <Status item={transaction} />
       </Flex>
 
-      <Box width="50%" />
+      <Feed />
     </Flex>
   );
 };

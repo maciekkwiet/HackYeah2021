@@ -91,8 +91,6 @@ export const Finished = () => {
 };
 
 export const Status = ({ item }: { item: Transaction }) => {
-  console.log('🚀 ~ file: Status.tsx ~ line 94 ~ Status ~ item', item);
-
   if (item?.status === 'FINISHED') return <Finished />;
 
   if (item?.status === 'ACCEPTED') return <Accepted id={item?.id} />;
