@@ -7,3 +7,9 @@ export const useTransaction = (id: number) => {
 
   return useRealtime<Transaction>('transaction', { select: { filter } });
 };
+
+export const useAllTransaction = (id: any, isPrivate: boolean) => {
+  const filter = useFilter((query) => query.eq(isPrivate ? 'giver' : 'taker', id));
+
+  return useRealtime<any>('transaction', { select: { filter } });
+};
