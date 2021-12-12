@@ -32,6 +32,7 @@ export const Transaction = () => {
       <Flex
         border="1px"
         borderColor="gray.300"
+        bgColor="white"
         padding="2rem"
         width="50%"
         boxShadow="2xl"

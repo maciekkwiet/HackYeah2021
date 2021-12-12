@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import { useProfile } from 'features/inventory/hooks/useShelters';
 import { useCurrentUser } from 'services/auth/hooks/useCurrentUser';
 
-import { useChat } from '../hooks/useChat';
+import { useChat, useNewChatMessage } from '../hooks/useChat';
 import { Transaction } from '../typings/transaction';
 import { MessageDisplay } from './Message';
+import { MessageInput } from './MessageInput';
 
 export const Feed = ({ transaction }: { transaction: Transaction }) => {
   const transactionId = transaction.id;
@@ -15,18 +17,21 @@ export const Feed = ({ transaction }: { transaction: Transaction }) => {
   const [{ data: notMeArr }] = useProfile(notMeId);
   const notMe = notMeArr?.[0];
   const [{ data }] = useChat(transactionId);
+  const { sendMessage } = useNewChatMessage();
 
-  console.log('🚀 ~ file: Feed.tsx ~ line 14 ~ Feed ~ me', me);
-  console.log('🚀 ~ file: Feed.tsx ~ line 18 ~ Feed ~ notMe', notMe);
-  console.log('🚀 ~ file: Feed.tsx ~ line 18 ~ Feed ~ data', data);
+  const sendMsg = (content: string) => {
+    sendMessage({ author: me.userId, content, transactionId } as any);
+  };
 
   return (
     <Flex
-      flexDirection="column-reverse"
+      flexDirection="column"
+      justifyContent="flex-end"
       marginLeft="-1rem"
       marginTop="-2rem"
       padding="2rem"
       paddingRight={0}
+      bgColor="grey.300"
       width="100%"
     >
       {data?.map(({ content, author, created_at }) => {
@@ -37,6 +42,7 @@ export const Feed = ({ transaction }: { transaction: Transaction }) => {
           <MessageDisplay content={content} createdAt={new Date(created_at)} avatar={avatar} isMyMessage={isMyMsg} />
         );
       })}
+      <MessageInput handleSubmit={sendMsg} />
     </Flex>
   );
 };
