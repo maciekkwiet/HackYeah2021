@@ -42,7 +42,7 @@ export const FileUpload = ({ name, placeholder = 'Twój plik...', acceptedFileTy
   return (
     <FormControl>
       <FormLabel htmlFor="writeUpFile">{label}</FormLabel>
-      <InputGroup onClick={() => inputRef.current?.click()}>
+      <InputGroup onClick={() => (inputRef as any).current?.click()}>
         <InputLeftElement pointerEvents="none" children={<Icon as={FiFile} />} />
         <input
           onChange={handleClick}

@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { BellIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import {
   Badge,
@@ -31,19 +31,21 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
   const [{ data, fetching }] = useMyInventory();
   const { theirs, overlap } = useOverlap(id);
   const { profile } = useCurrentUser();
+  const navigate = useNavigate();
 
   const quantityInput: number[] = [];
 
   const handleSubmit = async () => {
-    await addNewTransaction({
+    const { data } = await addNewTransaction({
       giver: profile.userId as string, // id usera
       taker: id, // id schroniska
       items: [...new Set(quantityInput)], // id itemow
       status: 'SUBMITTED',
     });
+
     onClose();
 
-    return <Navigate to={Paths.Transactions} />;
+    navigate(`/${Paths.Transaction.replace(':id', data?.[0].id)}`);
   };
 
   const handleChange = (e: any, id: any) => {
@@ -101,12 +103,12 @@ export const ShelterCard = ({ id, phone, email, logo, name, address, offersPicku
           <ModalCloseButton />
           <ModalBody>
             <PersonBox
-              shelterAvatar={logo}
-              shelterName={name}
-              shelterPlace={address}
-              userAvatar={profile?.avatar}
-              userName={profile?.name}
-              userCity={profile?.city}
+              shelterAvatar={profile?.avatar}
+              shelterName={profile?.name}
+              shelterPlace={profile?.city}
+              userAvatar={logo}
+              userName={name}
+              userCity={address}
             />
             <Box h={10} />
             <Box textStyle="h2">Twój inwentarz</Box>

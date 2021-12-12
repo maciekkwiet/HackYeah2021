@@ -28,6 +28,8 @@ export const AddNewItemForm = ({
   weight,
   handleChange,
 }: AddNewItemFormProps) => {
+  console.log('🚀 ~ file: AddNewItemForm.tsx ~ line 31 ~ category', category);
+
   const [isExpired, setExpired] = useState(false);
 
   return (

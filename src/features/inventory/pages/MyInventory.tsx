@@ -24,7 +24,7 @@ export const MyInventory = () => {
   const [form, setForm] = useState<Inventory>({
     name: '',
     description: '',
-    category: '',
+    category: 'AKCESORIA',
     image: '',
     quantity: 0,
     price: 0,

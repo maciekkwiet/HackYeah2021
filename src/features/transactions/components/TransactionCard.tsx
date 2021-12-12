@@ -36,6 +36,7 @@ export const TransactionCard = ({ giver, taker, transactionId, items }: any) => 
             colorScheme="blue"
             onClick={() => {
               navigate(`/transaction/${transactionId}`);
+              location.reload();
             }}
           >
             Przejdź do szczegółów

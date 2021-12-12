@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import { useProfile } from 'features/inventory/hooks/useShelters';
@@ -20,7 +21,7 @@ export const Feed = ({ transaction }: { transaction: Transaction }) => {
   const { sendMessage } = useNewChatMessage();
 
   const sendMsg = (content: string) => {
-    sendMessage({ author: me.userId, content, transactionId } as any);
+    sendMessage({ author: (me as any).userId, content, transactionId } as any);
   };
 
   return (
@@ -34,7 +35,7 @@ export const Feed = ({ transaction }: { transaction: Transaction }) => {
       bgColor="grey.300"
       width="100%"
     >
-      {data?.map(({ content, author, created_at }) => {
+      {data?.map(({ content, author, created_at }: any) => {
         const isMyMsg = author === (me as any).userId;
         const avatar = isMyMsg ? me.avatar : notMe?.avatar;
 

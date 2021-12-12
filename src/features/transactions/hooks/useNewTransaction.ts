@@ -6,7 +6,7 @@ export const useNewTransaction = () => {
   const [, insert] = useInsert<TransactionPayload>('transaction');
 
   const addNewTransaction = async (item: TransactionPayload) => {
-    await insert(item);
+    return insert(item);
   };
 
   return { addNewTransaction };

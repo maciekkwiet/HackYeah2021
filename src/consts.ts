@@ -3,7 +3,7 @@ export const piecesCategory = [
   'TRANSPORTERY',
   'KOCE',
   'AKCESORIA',
-  'SRODKI_HIGIENY',
+  'SRODKI HIGIENY',
   'SMAKOŁYKI',
   'MISKI',
   'INNE',

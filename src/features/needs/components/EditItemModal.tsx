@@ -19,7 +19,7 @@ import { AddNewItemForm } from './AddNewItemForm';
 export const EditItemModal = ({ id, category, weight, quantity }: NeedDBItem) => {
   const { editItem } = useEditItem();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [form, setForm] = useState<Need>({
+  const [form, setForm] = useState<any>({
     category,
     quantity,
     weight,

@@ -5,7 +5,7 @@ import { useSendNotification } from 'services/notification/hooks/useSendNotifica
 import { useUpdateTransaction } from '../hooks/useNewTransaction';
 import { Status as S, Transaction } from '../typings/transaction';
 
-export const Pending = ({ id, giver }: Transaction) => {
+export const Pending = ({ id, giver, taker }: Transaction) => {
   const { user } = useCurrentUser();
   const { updateTransaction } = useUpdateTransaction();
   const { sendNotification } = useSendNotification();
@@ -38,7 +38,7 @@ export const Pending = ({ id, giver }: Transaction) => {
         <Button color="red.600" onClick={decline}>
           Odrzuć transakcję
         </Button>
-        {user.id === giver && (
+        {user.id === taker && (
           <Button colorScheme="blue" onClick={approve}>
             Zatwierdź transakcję
           </Button>
@@ -48,7 +48,7 @@ export const Pending = ({ id, giver }: Transaction) => {
   );
 };
 
-export const Accepted = ({ id, giver }: Transaction) => {
+export const Accepted = ({ id, giver, taker }: Transaction) => {
   const { user } = useCurrentUser();
   const { updateTransaction } = useUpdateTransaction();
   const { sendNotification } = useSendNotification();
@@ -74,7 +74,7 @@ export const Accepted = ({ id, giver }: Transaction) => {
       </Text>
       <Flex mt="1rem" justifyContent="flex-end" gap="1rem">
         <Button color="red.600">Anuluj transakcję</Button>
-        {user.id === giver && (
+        {user.id === taker && (
           <Button colorScheme="blue" onClick={approve}>
             Oznacz jako zrealizowane
           </Button>

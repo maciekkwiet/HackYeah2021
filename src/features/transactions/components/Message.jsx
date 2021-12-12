@@ -70,7 +70,7 @@ const Main = styled.div`
   justify-content: flex-end;
 `;
 
-const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide }: any) => {
+const Message = ({ children, photoURL, createdAt, bgColor, side, bubbleSide }) => {
   const date = createdAt ? format(createdAt, 'dd-MM-RR HH:mm') : '';
   const flexOrder = side === 'flex-start' ? '-1' : '1';
 
@@ -91,7 +91,7 @@ const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide 
   );
 };
 
-export const MessageDisplay = ({ content, createdAt, isMyMessage, avatar }: any) => {
+export const MessageDisplay = ({ content, createdAt, isMyMessage, avatar }) => {
   const messageStyles = {
     color: '#000',
     backgroundColor: '#fff',
