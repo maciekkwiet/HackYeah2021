@@ -1,4 +1,4 @@
-import { Flex, Input, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Flex, Image, Input, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
 
 export type OurTableProps = {
   columns: string[];
@@ -19,8 +19,15 @@ export const TransactionTable = ({ columns, data, handleChange }: OurTableProps)
       <Tbody>
         {data.map((row: any) => (
           <Tr>
-            <Td color="gray.400">{row.name ?? '-'}</Td>
-            <Td color="gray.400">{row.price ?? '-'}</Td>
+            <Td color="gray.400">
+              <Flex>
+                <Image boxSize="80px" src={row?.image} alt="Logo" />
+                <Flex jusify="center" mt={5} ml={3}>
+                  {row.name ?? '-'}
+                </Flex>
+              </Flex>
+            </Td>
+            <Td color="gray.400">{row.price ? `${row.price} zł` : '-'}</Td>
             <Td color="gray.400">{row.expirationDate ?? '-'}</Td>
             <Td p={1}>
               <Flex>

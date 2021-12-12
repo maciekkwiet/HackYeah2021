@@ -9,7 +9,7 @@ export type OurTableProps = {
 export const OurTable = ({ columns, rows }: OurTableProps) => {
   return (
     <Table width="100%" variant="simple">
-      <Thead>
+      <Thead bg="gray.200">
         <Tr>
           {columns.map((header) => (
             <Th>{header}</Th>
