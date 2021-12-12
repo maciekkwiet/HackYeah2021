@@ -91,19 +91,19 @@ const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide 
   );
 };
 
-export const MessageDisplay = ({ content, createdAt, isMyMessage }: any) => {
+export const MessageDisplay = ({ content, createdAt, isMyMessage, avatar }: any) => {
   const messageStyles = {
     color: '#000',
     backgroundColor: '#fff',
   };
-  const userPhoto = isMyMessage ? '' : '';
+
   const bgColor = isMyMessage ? '#2563EB' : '#059669';
   const side = isMyMessage ? 'flex-end' : 'flex-start';
   const bubbleSide = isMyMessage ? 'right' : 'left';
 
   return (
     <div style={messageStyles}>
-      <Message bgColor={bgColor} photoURL="/" createdAt={createdAt} side={side} bubbleSide={bubbleSide}>
+      <Message bgColor={bgColor} photoURL={avatar} createdAt={createdAt} side={side} bubbleSide={bubbleSide}>
         {content}
       </Message>
     </div>
