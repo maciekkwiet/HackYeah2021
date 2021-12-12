@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import { LookUp } from 'components/LookUp';
 import { VicinityShelter } from 'components/VicinityShelter';
-import { OurTable } from 'features/auth/components/OurTable';
 
 import { ShelterCard } from '../components/ShelterCard';
 import { useShelters } from '../hooks/useShelters';
