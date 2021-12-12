@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PersonBox } from 'features/inventory/components/PersonSingleBox';
@@ -5,6 +6,7 @@ import { PersonBox } from 'features/inventory/components/PersonSingleBox';
 import { Feed } from '../components/Feed';
 import { Items } from '../components/Items';
 import { MessageDisplay } from '../components/Message';
+// import { MessageInput } from '../components/MessageInput';
 import { Status } from '../components/Status';
 import { useTransaction } from '../hooks/useTransaction';
 
@@ -12,6 +14,9 @@ export const Transaction = () => {
   const { id } = useParams();
 
   const [{ data }] = useTransaction(Number(id!));
+  const [value, setValue] = useState('');
+
+  const handleChange = () => {};
 
   if (!data)
     return (
