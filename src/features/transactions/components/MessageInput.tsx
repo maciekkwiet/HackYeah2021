@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import { Box, Input } from '@chakra-ui/react';
+import { EmailIcon } from '@chakra-ui/icons';
+import { Box, Button, Flex, Input } from '@chakra-ui/react';
 
 export type MessageProps = {
   handleSubmit: (msg: string) => void;
@@ -14,15 +15,20 @@ export const MessageInput = ({ handleSubmit }: MessageProps) => {
   };
 
   return (
-    <Box width="70%">
+    <Box width="100%">
       <form onSubmit={onSubmit}>
-        <Input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          type="text"
-          cursor="pointer"
-          placeholder="Treść wiadomości..."
-        />
+        <Flex gap="1rem">
+          <Input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            type="text"
+            cursor="pointer"
+            placeholder="Treść wiadomości..."
+          />
+          <Button colorScheme="blue" rightIcon={<EmailIcon />}>
+            Wyślij
+          </Button>
+        </Flex>
       </form>
     </Box>
   );

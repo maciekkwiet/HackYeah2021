@@ -1,17 +1,23 @@
 import { Badge, Button, Flex, Text } from '@chakra-ui/react';
+import { useCurrentUser } from 'services/auth/hooks/useCurrentUser';
+import { useSendNotification } from 'services/notification/hooks/useSendNotification';
 
 import { useUpdateTransaction } from '../hooks/useNewTransaction';
 import { Status as S, Transaction } from '../typings/transaction';
 
-export const Pending = ({ id }: { id: number }) => {
+export const Pending = ({ id, giver }: Transaction) => {
+  const { user } = useCurrentUser();
   const { updateTransaction } = useUpdateTransaction();
+  const { sendNotification } = useSendNotification();
 
   const decline = () => {
     updateTransaction({ id, status: 'DECLINED' } as any);
+    sendNotification(giver, 'Twoja oferta została odrzucona');
   };
 
   const approve = () => {
     updateTransaction({ id, status: 'ACCEPTED' } as any);
+    sendNotification(giver, 'Twoja oferta została przyjęta');
   };
 
   return (
@@ -32,19 +38,24 @@ export const Pending = ({ id }: { id: number }) => {
         <Button color="red.600" onClick={decline}>
           Odrzuć transakcję
         </Button>
-        <Button colorScheme="blue" onClick={approve}>
-          Zatwierdź transakcję
-        </Button>
+        {user.id === giver && (
+          <Button colorScheme="blue" onClick={approve}>
+            Zatwierdź transakcję
+          </Button>
+        )}
       </Flex>
     </Flex>
   );
 };
 
-export const Accepted = ({ id }: { id: number }) => {
+export const Accepted = ({ id, giver }: Transaction) => {
+  const { user } = useCurrentUser();
   const { updateTransaction } = useUpdateTransaction();
+  const { sendNotification } = useSendNotification();
 
   const approve = () => {
     updateTransaction({ id, status: 'FINISHED' } as any);
+    sendNotification(giver, 'Transakcja została oznaczona jako zakończona');
   };
 
   return (
@@ -63,9 +74,11 @@ export const Accepted = ({ id }: { id: number }) => {
       </Text>
       <Flex mt="1rem" justifyContent="flex-end" gap="1rem">
         <Button color="red.600">Anuluj transakcję</Button>
-        <Button colorScheme="blue" onClick={approve}>
-          Oznacz jako zrealizowane
-        </Button>
+        {user.id === giver && (
+          <Button colorScheme="blue" onClick={approve}>
+            Oznacz jako zrealizowane
+          </Button>
+        )}
       </Flex>
     </Flex>
   );
@@ -93,7 +106,7 @@ export const Finished = () => {
 export const Status = ({ item }: { item: Transaction }) => {
   if (item?.status === 'FINISHED') return <Finished />;
 
-  if (item?.status === 'ACCEPTED') return <Accepted id={item?.id} />;
+  if (item?.status === 'ACCEPTED') return <Accepted {...item} />;
 
-  return <Pending id={item?.id} />;
+  return <Pending {...item} />;
 };
