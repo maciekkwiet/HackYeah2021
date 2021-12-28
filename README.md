@@ -1,2 +1,2 @@
-HackYeah2021
+Hackathon HackYeah2021
 https://pet-store-hack-yeah.herokuapp.com/login
